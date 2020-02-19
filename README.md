@@ -1,2 +1,1 @@
 # Beetroot
-Python for beginners
