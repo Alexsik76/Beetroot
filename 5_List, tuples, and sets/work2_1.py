@@ -14,3 +14,6 @@ while i < 10:
 list1_1 = list(enumerate(list1))
 print(type(list1_1))
 print(list1_1)
+print(str(list1))
+list1_3 = zip(list1_1, ('\n'*10))
+print('\n'.join(str(list1_1)))
