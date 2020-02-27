@@ -8,4 +8,3 @@ while i < 10:
     i += 1
 print(list1)
 print(sorted(list1)[-1])
-# as;lkjd;lasd
