@@ -62,7 +62,7 @@ for person in dict_all_person:
         dict_all_person[person]['fruits_needed'][fruit] = randint(0, 10)
         dict_all_person[person]['have_fruits'][fruit] = 0
 d_items = dict_all_person.items()
-print('Dictionares of persons whith their wish of fruits', '\n')
+print('\n', 'Dictionares of persons whith their wish of fruits', '\n')
 print(*d_items, sep='\n')
 # shopping
 #
@@ -88,10 +88,25 @@ for person in dict_all_person:
 # d_items = dict_all_person.items()
 # print('\n', 'Dictionares of persons whith their wish of fruits', '\n')
 # print(*d_items, sep='\n')
-# print beautiful information
+# beautiful print
 for person in dict_all_person:
-    print(f'{person.upper()} have:')
-    print(f'{dict_all_person[person]["money"]} money.')
+    print(f'\t  {person.upper()} have:')
+    print(f'\t{dict_all_person[person]["money"]} money.')
     for fruit in dict_all_person[person]["have_fruits"]:
-        print(f'{fruit}\t{dict_all_person[person]["have_fruits"][fruit]}')
+        print(f'\t{fruit}\t{dict_all_person[person]["have_fruits"][fruit]}')
+    print('\n')
+    print(f'\t{person.upper()} needed:')
+    need_money = 0
+    for fruit in dict_all_person[person]['fruits_needed']:
+        print(f'\t{fruit}\t{dict_all_person[person]["fruits_needed"][fruit]}')
+        need_money += (
+                        (dict_all_person[person]["fruits_needed"][fruit]) *
+                        (dict_all_fruits[fruit]['price'])
+                      )
+    print(f'\t{person}\n\tneeded {need_money} money.')
+    if need_money != 0:
+        if need_money <= dict_all_person[person]["money"]:
+            print(f'\tand {person} have it')
+        else:
+            print(f"\tbut {person} haven't it")
     print('\n')
