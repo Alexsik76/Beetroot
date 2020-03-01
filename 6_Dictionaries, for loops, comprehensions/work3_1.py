@@ -6,13 +6,13 @@ print(a)
 print(k)
 print(g)
 print(a, k, g, sep=', ')
-# checking
+# check
 list_of_fruits = [a, k, g]
 user_input = input('Input a fruit: ')
 print(user_input in list_of_fruits)
-# creating list of persons
+# creation list of persons
 list_of_persons = ['Alex', 'Vova', 'Serg']
-# checking for replays
+# check for duplicates
 list_of_fruits.append('apple')
 for item in list_of_fruits:
     replays = list_of_fruits.count(item)
@@ -24,7 +24,7 @@ for item in list_of_persons:
     if replays > 1:
         print(f'The {item} is repeated {replays} times')
     print('There are no replays')
-# creating dictionares whith persons and fruits
+# creation of dictionares whith persons and fruits
 dict_all = {}
 list_of_persons_temp = list_of_persons.copy()
 for item in list_of_fruits:
@@ -33,7 +33,7 @@ for item in list_of_fruits:
     else:
         break
 print(dict_all)
-# creating dictionares for every person and every fruits
+# creation of dictionares for every person and every fruits
 dict_all_person = {}
 dict_all_fruits = {}
 for item in list_of_persons:
@@ -52,11 +52,11 @@ print(type(dict_all_person))
 print(dict_all_person)
 print(type(dict_all_fruits))
 print(dict_all_fruits)
-# generating random prices for the every fruits
+# generate random prices for every fruit
 for item in dict_all_fruits:
     dict_all_fruits[item]['price'] = randint(1, 10)
 print(dict_all_fruits)
-# generating random wish of fruits for the every person
+# generate random fruit needed for every person
 for person in dict_all_person:
     for fruit in dict_all_fruits:
         dict_all_person[person]['fruits_needed'][fruit] = randint(0, 10)
@@ -66,13 +66,13 @@ print('Dictionares of persons whith their wish of fruits', '\n')
 print(*d_items, sep='\n')
 # shopping
 #
-# 1. detect minimal prices
+# 1. detection of a minimal price
 prices = []
 for item in dict_all_fruits:
     prices.append(dict_all_fruits[item]['price'])
 min_price = min(prices)
 print('\n', 'Minimal prices is: ', min_price)
-# 2. shop fruits every person
+# 2. shop fruits by every person
 for person in dict_all_person:
     if dict_all_person[person]['money'] >= min_price:
         for fruit in dict_all_fruits:
