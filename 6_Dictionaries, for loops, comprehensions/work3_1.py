@@ -85,6 +85,13 @@ for person in dict_all_person:
                 dict_all_person[person]['money'] -= dict_all_fruits[fruit]['price']
                 dict_all_fruits[fruit]['numbers'] -= 1
 # 3. print results
-d_items = dict_all_person.items()
-print('\n', 'Dictionares of persons whith their wish of fruits', '\n')
-print(*d_items, sep='\n')
+# d_items = dict_all_person.items()
+# print('\n', 'Dictionares of persons whith their wish of fruits', '\n')
+# print(*d_items, sep='\n')
+# print beautiful information
+for person in dict_all_person:
+    print(f'{person.upper()} have:')
+    print(f'{dict_all_person[person]["money"]} money.')
+    for fruit in dict_all_person[person]["have_fruits"]:
+        print(f'{fruit}\t{dict_all_person[person]["have_fruits"][fruit]}')
+    print('\n')
