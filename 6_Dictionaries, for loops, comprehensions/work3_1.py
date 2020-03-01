@@ -10,7 +10,7 @@ print(a, k, g, sep=', ')
 list_of_fruits = [a, k, g]
 user_input = input('Input a fruit: ')
 print(user_input in list_of_fruits)
-# creation list of persons
+# creation of a list of persons
 list_of_persons = ['Alex', 'Vova', 'Serg']
 # check for duplicates
 list_of_fruits.append('apple')
@@ -33,7 +33,7 @@ for item in list_of_fruits:
     else:
         break
 print(dict_all)
-# creation of dictionares for every person and every fruits
+# creation of dictionares for every person and every fruit
 dict_all_person = {}
 dict_all_fruits = {}
 for item in list_of_persons:
@@ -56,7 +56,7 @@ print(dict_all_fruits)
 for item in dict_all_fruits:
     dict_all_fruits[item]['price'] = randint(1, 10)
 print(dict_all_fruits)
-# generate random fruit needed for every person
+# generate random fruit needed by every person
 for person in dict_all_person:
     for fruit in dict_all_fruits:
         dict_all_person[person]['fruits_needed'][fruit] = randint(0, 10)
@@ -72,7 +72,7 @@ for item in dict_all_fruits:
     prices.append(dict_all_fruits[item]['price'])
 min_price = min(prices)
 print('\n', 'Minimal prices is: ', min_price)
-# 2. shop fruits by every person
+# 2. shopping fruits by every person
 for person in dict_all_person:
     if dict_all_person[person]['money'] >= min_price:
         for fruit in dict_all_fruits:
