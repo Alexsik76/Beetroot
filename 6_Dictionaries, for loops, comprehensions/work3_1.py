@@ -7,8 +7,8 @@ print(g)
 print(a, k, g, sep=', ')
 # checking
 list_of_fruits = [a, k, g]
-user_input = input('Input a fruit: ')
-print(user_input in list_of_fruits)
+# user_input = input('Input a fruit: ')
+# print(user_input in list_of_fruits)
 # creating list of persons
 list_of_persons = ['Alex', 'Vova', 'Serg']
 # checking for replays
@@ -33,8 +33,14 @@ for item in list_of_fruits:
         break
 print(dict_all)
 # creating dictionares for every person and every fruits
+dict_all_person = {}
+dict_all_fruits = {}
 for item in list_of_persons:
-    item = {'have_fruits': '', 'money': 100}
+    dict_all_person[item] = {'have_fruits': '', 'money': 100}
 for item in list_of_fruits:
-    item = {'price': 0, 'numbers': 10}
+    dict_all_fruits[item] = {'price': 0, 'numbers': 10}
 # ended in classroom
+print(type(dict_all_person))
+print(dict_all_person)
+print(type(dict_all_fruits))
+print(dict_all_fruits)
