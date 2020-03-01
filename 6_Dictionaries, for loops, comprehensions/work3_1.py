@@ -76,20 +76,14 @@ print('\n', 'Minimal prices is: ', min_price)
 for person in dict_all_person:
     if dict_all_person[person]['money'] >= min_price:
         for fruit in dict_all_fruits:
-            i_have = dict_all_person[person]['have_fruits'][fruit]
-            i_wont = dict_all_person[person]['fruits_needed'][fruit]
-            my_money = dict_all_person[person]['money']
-            price = dict_all_fruits[fruit]['price']
-            in_stock = dict_all_fruits[fruit]['numbers']
-            while i_wont > 0 and in_stock > 0 and price <= my_money:
+            while (dict_all_person[person]['fruits_needed'][fruit] > 0
+                    and dict_all_fruits[fruit]['numbers'] > 0
+                    and dict_all_fruits[fruit]['price'] <=
+                    dict_all_person[person]['money']):
                 dict_all_person[person]['have_fruits'][fruit] += 1
                 dict_all_person[person]['fruits_needed'][fruit] -= 1
-                dict_all_person[person]['money'] -= price
+                dict_all_person[person]['money'] -= dict_all_fruits[fruit]['price']
                 dict_all_fruits[fruit]['numbers'] -= 1
-                i_have = dict_all_person[person]['have_fruits'][fruit]
-                i_wont = dict_all_person[person]['fruits_needed'][fruit]
-                my_money = dict_all_person[person]['money']
-                in_stock = dict_all_fruits[fruit]['numbers']
 # 3. print results
 d_items = dict_all_person.items()
 print('\n', 'Dictionares of persons whith their wish of fruits', '\n')
