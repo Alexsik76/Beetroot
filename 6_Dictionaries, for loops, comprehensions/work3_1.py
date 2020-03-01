@@ -8,8 +8,8 @@ print(g)
 print(a, k, g, sep=', ')
 # checking
 list_of_fruits = [a, k, g]
-# user_input = input('Input a fruit: ')
-# print(user_input in list_of_fruits)
+user_input = input('Input a fruit: ')
+print(user_input in list_of_fruits)
 # creating list of persons
 list_of_persons = ['Alex', 'Vova', 'Serg']
 # checking for replays
