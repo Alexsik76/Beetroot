@@ -110,7 +110,7 @@ for person in dict_all_person:
         else:
             print(f"\tbut {person} hasn't it")
     print('\n')
-# Торгівля
+# Traiding
 def lets_trade(person_1, fruit, number, person_2):
     p1_hf = dict_all_person[person_1]["have_fruits"][fruit]
     p1_hm = dict_all_person[person_1]["money"]
@@ -132,14 +132,38 @@ def lets_trade(person_1, fruit, number, person_2):
         dict_all_person[person_2]["have_fruits"][fruit] = p2_hf
         dict_all_person[person_1]["money"] = p2_hm
         dict_all_person[person_2]["fruits_needed"][fruit] = p2_nf
-        print('Successfully!')
+        print('Successfull!')
     else:
         print(f'''{person_1} do not has {number} {fruit}\n
                        or {person_2} do not has {cost} money\n''')
 
 
-person_1 = input('Enter a name of SELER: ')
-person_2 = input('Enter a name of BUYER: ')
-fruit = input('Enter a NAME of fruit: ')
+person_1 = input('Enter a name of a SELLER: ')
+if person_1 in dict_all_person:
+    print('Thank you')
+else:
+    print(f'There is not {person_1} in the list of all persons \n')
+    print('There is a list of all person \n')
+    d_items = dict_all_person.items()
+    print(*d_items, sep='\n')
+    person_1 = input('Enter a name of a SELLER: ')
+person_2 = input('Enter a name of a CUSTOMER: ')
+if person_2 in dict_all_person and person_2 != person_1:
+    print('Thank you')
+else:
+    print(f'There is not {person_2} in the list of all persons \n')
+    print('There is a list of all person \n')
+    d_items = dict_all_person.items()
+    print(*d_items, sep='\n')
+    person_2 = input('Enter a name of CUSTOMER: ')
+fruit = input('Enter a FRUIT: ')
+if fruit in dict_all_fruits:
+    print('Thank you')
+else:
+    print(f'There is not {fruit} in the list of all fruitss \n')
+    print('There is a list of all fruits \n')
+    d_items = dict_all_fruits.items()
+    print(*d_items, sep='\n')
+    fruit = input('Enter a FRUIT: ')
 number = int(input('Enter a NUMBER of fruit: '))
 lets_trade(person_1, fruit, number, person_2)
