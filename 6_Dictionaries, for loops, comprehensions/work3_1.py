@@ -90,12 +90,12 @@ for person in dict_all_person:
 # print(*d_items, sep='\n')
 # beautiful print
 for person in dict_all_person:
-    print(f'\t  {person.upper()} have:')
+    print(f'\t  {person.upper()} has:')
     print(f'\t{dict_all_person[person]["money"]} money.')
     for fruit in dict_all_person[person]["have_fruits"]:
         print(f'\t{fruit}\t{dict_all_person[person]["have_fruits"][fruit]}')
     print('\n')
-    print(f'\t{person.upper()} needed:')
+    print(f'\t{person.upper()} needs:')
     need_money = 0
     for fruit in dict_all_person[person]['fruits_needed']:
         print(f'\t{fruit}\t{dict_all_person[person]["fruits_needed"][fruit]}')
@@ -103,10 +103,10 @@ for person in dict_all_person:
                         (dict_all_person[person]["fruits_needed"][fruit]) *
                         (dict_all_fruits[fruit]['price'])
                       )
-    print(f'\t{person}\n\tneeded {need_money} money.')
+    print(f'\t{person}\n\tneeds {need_money} money.')
     if need_money != 0:
         if need_money <= dict_all_person[person]["money"]:
-            print(f'\tand {person} have it')
+            print(f'\tand {person} has it')
         else:
-            print(f"\tbut {person} haven't it")
+            print(f"\tbut {person} hasn't it")
     print('\n')
