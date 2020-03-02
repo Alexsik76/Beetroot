@@ -18,12 +18,12 @@ for item in list_of_fruits:
     replays = list_of_fruits.count(item)
     if replays > 1:
         print(f'The {item} is repeated {replays} times')
-    print('There are no replays')
+    print('There are no repeats')
 for item in list_of_persons:
     replays = list_of_persons.count(item)
     if replays > 1:
         print(f'The {item} is repeated {replays} times')
-    print('There are no replays')
+    print('There are no repeats')
 # creation of dictionares whith persons and fruits
 dict_all = {}
 list_of_persons_temp = list_of_persons.copy()
@@ -62,7 +62,7 @@ for person in dict_all_person:
         dict_all_person[person]['fruits_needed'][fruit] = randint(0, 10)
         dict_all_person[person]['have_fruits'][fruit] = 0
 d_items = dict_all_person.items()
-print('\n', 'Dictionares of persons whith their wish of fruits', '\n')
+print('\n', 'Dictionares of persons with their wish of fruits', '\n')
 print(*d_items, sep='\n')
 # shopping
 #
@@ -71,7 +71,7 @@ prices = []
 for item in dict_all_fruits:
     prices.append(dict_all_fruits[item]['price'])
 min_price = min(prices)
-print('\n', 'Minimal prices is: ', min_price)
+print('\n', 'Minimal price is: ', min_price)
 # 2. shopping fruits by every person
 for person in dict_all_person:
     if dict_all_person[person]['money'] >= min_price:
@@ -134,8 +134,8 @@ def lets_trade(person_1, fruit, number, person_2):
         dict_all_person[person_2]["fruits_needed"][fruit] = p2_nf
         print('Successfull!')
     else:
-        print(f'''{person_1} do not has {number} {fruit}\n
-                       or {person_2} do not has {cost} money\n''')
+        print(f'''{person_1} does not have {number} {fruit}\n
+                       or {person_2} does not have {cost} money\n''')
 
 
 person_1 = input('Enter a name of a SELLER: ')
@@ -143,7 +143,7 @@ if person_1 in dict_all_person:
     print('Thank you')
 else:
     print(f'There is not {person_1} in the list of all persons \n')
-    print('There is a list of all person \n')
+    print('There is a list of all persons \n')
     d_items = dict_all_person.items()
     print(*d_items, sep='\n')
     person_1 = input('Enter a name of a SELLER: ')
@@ -152,18 +152,18 @@ if person_2 in dict_all_person and person_2 != person_1:
     print('Thank you')
 else:
     print(f'There is not {person_2} in the list of all persons \n')
-    print('There is a list of all person \n')
+    print('There is a list of all persons \n')
     d_items = dict_all_person.items()
     print(*d_items, sep='\n')
-    person_2 = input('Enter a name of CUSTOMER: ')
+    person_2 = input('Enter a name of a CUSTOMER: ')
 fruit = input('Enter a FRUIT: ')
 if fruit in dict_all_fruits:
     print('Thank you')
 else:
-    print(f'There is not {fruit} in the list of all fruitss \n')
+    print(f'There is not a {fruit} in the list of all fruits \n')
     print('There is a list of all fruits \n')
     d_items = dict_all_fruits.items()
     print(*d_items, sep='\n')
     fruit = input('Enter a FRUIT: ')
-number = int(input('Enter a NUMBER of fruit: '))
+number = int(input('Enter a NUMBER of a fruit: '))
 lets_trade(person_1, fruit, number, person_2)
