@@ -176,6 +176,7 @@ def select_item(list):
             choice -= 1
         if ord(msvcrt.getch()) == 13:
             target = temp_list[choice]
+            print(p[1].name)
             break
     return target
 
