@@ -176,7 +176,6 @@ def select_item(list):
             choice -= 1
         if ord(msvcrt.getch()) == 13:
             target = temp_list[choice]
-            print(p[1].name)
             break
     return target
 
@@ -187,11 +186,13 @@ def user_sale():
     price = int(input('Введіть ціну: '))
     number = int(input('Введіть кількість: '))
     purcaser_list = []
-    for i in range[1, 11]:
+    for i in range(1, 11):
         purcaser_list.append(p[i].name)
+    print(purcaser_list)
     purcaser = select_item(purcaser_list)
     p[0].sale(item, price, number)
-    p.purcaser.purchase(item, price, number)
+    p[purcaser_list.index(purcaser)].purchase(item, price, number)
+    print('Successfull!')
 
 
 def user_purchase():
