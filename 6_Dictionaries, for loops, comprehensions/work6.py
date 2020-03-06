@@ -1,3 +1,5 @@
+from random import randint
+
 
 class Persona:
     def __init__(self, name, sex):
