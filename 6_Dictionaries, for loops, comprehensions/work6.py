@@ -66,17 +66,13 @@ class Persona:
                     det = int((self.larder[prod][year]) / 4)
                     self.larder[prod][year] -= det
                     print(det)
+                    print(prod)
+                    print('Year = ' + str(year))
+                    print(self.larder[prod])
                     input()
 
 
-
-            # if prod:
-            #     for year in range(self.larder[prod][:-3]):
-            #         det = int((self.larder[prod][year]) / 4)
-            #         self.larder[prod][year] -= det
-
-
-def create_person(i):
+def create_person(i,):
     name = input('Ввведіть ім\'я персонажа: ')
     name = name.replace(' ', '')
     p.append(Persona(name))
@@ -120,7 +116,7 @@ def values_of_pers(n):
     return temp_inf
 
 
-def output_pers_inf(start=0, stop=5):
+def output_pers_inf(start=0, stop=2):
     # generation a PrettyTable
     os.system('cls' if os.name == 'nt' else 'clear')
     th = (['Name',
@@ -144,10 +140,9 @@ def output_pers_inf(start=0, stop=5):
 
 p = []
 print(p)
-for k in range(5):
-    print(f'k = {k}')
+for k in range(2):
     create_person(k)
-output_pers_inf(0, 4)
+output_pers_inf(0, 2)
 # game loop
 for year in range(1900, 2001):
     if year % 4 != 0 or (year % 100 == 0 and year % 400 != 0):
@@ -161,5 +156,5 @@ for year in range(1900, 2001):
     for i in p:
         i.deterioration()
 
-    output_pers_inf(0, 4)
+    output_pers_inf(0, 2)
     sleep(1)
