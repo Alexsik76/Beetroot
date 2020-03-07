@@ -5,6 +5,8 @@ print('\n', '   ', '='*14)
 for key, value in arr.items():
     print('    ', '|', key, '-'*6, value, '|')
 print('    ', '='*14)
+print(arr.values())
+print(arr.keys())
 basket = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana']
 for f in sorted(set(basket)):
     print(f)
