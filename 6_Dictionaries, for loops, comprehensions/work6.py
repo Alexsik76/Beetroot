@@ -43,7 +43,7 @@ class Persona:
 
     def get_oldest_product(self, prod):
         if len(self.larder[prod]):
-            for nyear in range(len(self.larder[prod])):
+            for nyear in self.larder[prod]:
                 if self.larder[prod][nyear] > 0:
                     self.larder[prod][nyear] -= 1
                     if self.larder[prod][0] == 0:
@@ -148,11 +148,11 @@ for year in range(1900, 2001):
     else:
         number_of_days = 366
     for day in range(1, (number_of_days + 1)):
-        for i in range(2):
-            p[i].harvesting(day)
-            p[i].nutrition()
-    for i in range(2):
-        p[i].deterioration()
+        for i in p:
+            p.harvesting(day)
+            p.nutrition()
+    for i in p:
+        p.deterioration()
 
     output_pers_inf(year, 0, 2)
     sleep(1)
