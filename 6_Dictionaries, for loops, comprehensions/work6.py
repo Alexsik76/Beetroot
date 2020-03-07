@@ -30,20 +30,22 @@ class Persona:
                 'potatoes': 1,
                 'wheat': 1
             }
-    date_of_harvests = [90, 110, 120, 130, 140]
-    crops = dict(zip(larder.keys(), date_of_harvests))
 
     def harvesting(self, day):
-        for key, value in self.crops.items():
+        date_of_harvests = [90, 110, 120, 130, 140]
+        crops = dict(zip(self.larder.keys(), date_of_harvests))
+        for key, value in crops.items():
+            # print(f'day = {day}, key = {key}, value = {value}')
+            # input()
             if day == value:
-                size_of_crops = 310 + randint(-54, 54)
-                self.larder[key].append(size_of_crops * self.ability[key])
+                size_of_crops = (310 + randint(-54, 54))
+                (self.larder[key]).append(int(size_of_crops * self.ability[key]))
 
     def get_oldest_product(self, prod):
         if len(self.larder[prod]):
-            for year in range(len(self.larder[prod])):
-                if self.larder[prod][year] > 0:
-                    self.larder[prod][year] -= 1
+            for nyear in range(len(self.larder[prod])):
+                if self.larder[prod][nyear] > 0:
+                    self.larder[prod][nyear] -= 1
                     if self.larder[prod][0] == 0:
                         del self.larder[prod][0]
                     return 1
@@ -62,17 +64,12 @@ class Persona:
     def deterioration(self):
         for prod in self.larder.keys():
             if len(self.larder[prod]) > 2:
-                for year in range(len(self.larder[prod][:-3])):
-                    det = int((self.larder[prod][year]) / 4)
-                    self.larder[prod][year] -= det
-                    print(det)
-                    print(prod)
-                    print('Year = ' + str(year))
-                    print(self.larder[prod])
-                    input()
+                for nyear in range(len(self.larder[prod][:-3])):
+                    det = int((self.larder[prod][nyear]) / 4)
+                    self.larder[prod][nyear] -= det
 
 
-def create_person(i,):
+def create_person(i):
     name = input('Ввведіть ім\'я персонажа: ')
     name = name.replace(' ', '')
     p.append(Persona(name))
@@ -97,26 +94,28 @@ def create_person(i,):
                             n = int(input())
                             if n < 1 or n > number:
                                 raise Exception
-                            p[i].ability[key] += n
+                            p[i].ability[key] += (n/10)
                             number -= n
                             break
                         except ValueError:
                             print('Невірный формат')
                         except Exception:
                             print(f'Введіть число від 1 до {number}')
+#    print(p[i].name, [i for i in p[i].ability.items()])
 
 
-def values_of_pers(n):
+def values_of_pers(n, year):
     # generation of a list of propertys of pers
     temp_inf = []
     temp_inf = ([p[n].name,
                 p[n].health])
-    for item in p[n].larder:
-        temp_inf.append(sum(p[n].larder[item]))
+    for key in (p[n].larder).keys():
+        temp_inf.append(sum(p[n].larder[key]))
+    temp_inf.append(year)
     return temp_inf
 
 
-def output_pers_inf(start=0, stop=2):
+def output_pers_inf(year, start=0, stop=2):
     # generation a PrettyTable
     os.system('cls' if os.name == 'nt' else 'clear')
     th = (['Name',
@@ -126,20 +125,19 @@ def output_pers_inf(start=0, stop=2):
            'apples',
            'potatoes',
            'wheat',
-           ])
+           'Year'])
     table = PrettyTable(th)
     if stop >= 0:
         i = start
         while i < stop:
-            table.add_row(values_of_pers(i))
+            table.add_row(values_of_pers(i, year))
             i += 1
     else:
-        table.add_row(values_of_pers(start))
+        table.add_row(values_of_pers(start, year))
     print(table)
 
 
 p = []
-print(p)
 for k in range(2):
     create_person(k)
 output_pers_inf(0, 2)
@@ -150,11 +148,12 @@ for year in range(1900, 2001):
     else:
         number_of_days = 366
     for day in range(1, (number_of_days + 1)):
-        for i in p:
-            i.harvesting(day)
-            i.nutrition()
-    for i in p:
-        i.deterioration()
+        for i in range(2):
+            p[i].harvesting(day)
+            p[i].nutrition()
+    for i in range(2):
+        p[i].deterioration()
 
-    output_pers_inf(0, 2)
+    output_pers_inf(year, 0, 2)
     sleep(1)
+    input()
