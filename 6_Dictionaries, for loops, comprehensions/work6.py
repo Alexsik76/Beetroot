@@ -7,29 +7,29 @@ from time import sleep
 class Persona:
     def __init__(self, name):
         self.name = name
-    age = 0
-    health = 100
-    larder = {
+
+        self.larder = {
                 'bananas': [],
                 'mangoes': [],
                 'apples': [],
                 'potatoes': [],
                 'wheat': []
               }
-    ability = {
+        self.ability = {
                 'bananas': 1,
                 'mangoes': 1,
                 'apples': 1,
                 'potatoes': 1,
                 'wheat': 1
               }
-    using = {
+        self.using = {
                 'bananas': 1,
                 'mangoes': 1,
                 'apples': 1,
                 'potatoes': 1,
                 'wheat': 1
             }
+        self.health = 100
 
     def harvesting(self, day):
         date_of_harvests = [90, 110, 120, 130, 140]
@@ -38,12 +38,14 @@ class Persona:
             # print(f'day = {day}, key = {key}, value = {value}')
             # input()
             if day == value:
-                size_of_crops = (310 + randint(-54, 54))
+                size_of_crops = (210 + randint(-54, 54))
                 (self.larder[key]).append(int(size_of_crops * self.ability[key]))
 
     def get_oldest_product(self, prod):
-        if len(self.larder[prod]):
-            for nyear in self.larder[prod]:
+        # print(self.larder[prod], len(self.larder[prod]))
+        # input()
+        if len(self.larder[prod]) > 0:
+            for nyear in range(len(self.larder[prod])):
                 if self.larder[prod][nyear] > 0:
                     self.larder[prod][nyear] -= 1
                     if self.larder[prod][0] == 0:
@@ -137,6 +139,12 @@ def output_pers_inf(year, start=0, stop=2):
     print(table)
 
 
+def print_info(pers):
+    print(pers.name)
+    for l in pers.larder:
+        print(f'{l} -- {sum(pers.larder[l])}')
+
+
 p = []
 for k in range(2):
     create_person(k)
@@ -149,11 +157,12 @@ for year in range(1900, 2001):
         number_of_days = 366
     for day in range(1, (number_of_days + 1)):
         for i in p:
-            p.harvesting(day)
-            p.nutrition()
+            i.harvesting(day)
+            i.nutrition()
     for i in p:
-        p.deterioration()
-
+        i.deterioration()
+        # print_info(i)
     output_pers_inf(year, 0, 2)
+
     sleep(1)
     input()
