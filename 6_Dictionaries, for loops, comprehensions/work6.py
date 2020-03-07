@@ -1,55 +1,165 @@
 from random import randint
+import os
+from prettytable import PrettyTable
+from time import sleep
 
 
 class Persona:
-    def __init__(self, name, sex):
+    def __init__(self, name):
         self.name = name
-        self.sex = sex
     age = 0
     health = 100
-    money = 0
-    larder = {'meet': 0, 'fruits': 0, 'milk': 0, 'bread': 0}
-    craft = 0
-    land = 0
-    salary = 0
-    # calculating income
+    larder = {
+                'bananas': [],
+                'mangoes': [],
+                'apples': [],
+                'potatoes': [],
+                'wheat': []
+              }
+    ability = {
+                'bananas': 1,
+                'mangoes': 1,
+                'apples': 1,
+                'potatoes': 1,
+                'wheat': 1
+              }
+    using = {
+                'bananas': 1,
+                'mangoes': 1,
+                'apples': 1,
+                'potatoes': 1,
+                'wheat': 1
+            }
+    date_of_harvests = [90, 110, 120, 130, 140]
+    crops = dict(zip(larder.keys(), date_of_harvests))
 
-    def income(self):
-        # each unit of the earth brings a random amount
-        # of meet, fruits, milk, bread
-        meet = self.land * (randint(0, 1))
-        fruits = self.land * (randint(0, 50))
-        milk = self.land * (randint(0, 30))
-        bread = self.land * (randint(0, 3))
-        # each unit of the craft brings a random amount
-        # of money
-        income_money = self.craft * (randint(0, 15))
-        # updating the value
-        # - products
-        temp_products = [bread, milk, fruits, meet]
-        for item in self.larder:
-            self.larder[item] += temp_products.pop()
-        # - money
-            self.money += (income_money + self.salary)
+    def harvesting(self, day):
+        for key, value in self.crops.items():
+            if day == value:
+                size_of_crops = 310 + randint(-54, 54)
+                self.larder[key].append(size_of_crops * self.ability[key])
 
-    # Guideline Daily Amount
-
-    def gda(self):
-        if self.age < 18:
-            return randint(1500, 2000)
-        elif self.age >= 18 and self.sex == 'female':
-            return randint(1800, 2200)
+    def get_oldest_product(self, prod):
+        if len(self.larder[prod]):
+            for year in range(len(self.larder[prod])):
+                if self.larder[prod][year] > 0:
+                    self.larder[prod][year] -= 1
+                    if self.larder[prod][0] == 0:
+                        del self.larder[prod][0]
+                    return 1
         else:
-            return randint(2200, 2700)
+            return 0
 
-    def sale(self, item, price, number):
-        if self.larder[item] >= number:
-            self.larder[item] -= number
-            self.money += (number * price)
-        else:
-            print('Товар у такій кількості відсутній!')
+    def nutrition(self):
+        ration = 0
+        for item in self.larder.keys():
+            ration += self.get_oldest_product(item)
+        if ration < 4:
+            self.health -= (1/365)
+        elif ration > 4 and self.health < 100:
+            self.health += (1/365)
 
-    def purchase(self, item, price, number):
-        if (price * number) >= self.money:
-            self.larder[item] += number
-            self.money -= (number * price)
+    def deterioration(self):
+        for prod in self.larder.keys():
+            if len(self.larder[prod]) > 2:
+                for year in range(len(self.larder[prod][:-3])):
+                    det = int((self.larder[prod][year]) / 4)
+                    self.larder[prod][year] -= det
+                    print(det)
+                    input()
+
+
+
+            # if prod:
+            #     for year in range(self.larder[prod][:-3]):
+            #         det = int((self.larder[prod][year]) / 4)
+            #         self.larder[prod][year] -= det
+
+
+def create_person(i):
+    name = input('Ввведіть ім\'я персонажа: ')
+    name = name.replace(' ', '')
+    p.append(Persona(name))
+    print(f'Створено персонажа {p[i].name}')
+    number = 5
+    for item in p[i].ability.keys():
+        while number > 0:
+            # os.system('cls' if os.name == 'nt' else 'clear')
+            print("""
+            У Вас всього 5 очків навичок.
+            Додайте до кожного вміння бажану
+            кількість очків.
+            """)
+            # print(f'У {pers.name} наступні навички:')
+            # print(f'')
+            for key, value in p[i].ability.items():
+                if number > 0:
+                    print(f'Залишилось розподілити {number} очків')
+                    print(f'Додайте навичку у збиранні {key}:')
+                    while True:
+                        try:
+                            n = int(input())
+                            if n < 1 or n > number:
+                                raise Exception
+                            p[i].ability[key] += n
+                            number -= n
+                            break
+                        except ValueError:
+                            print('Невірный формат')
+                        except Exception:
+                            print(f'Введіть число від 1 до {number}')
+
+
+def values_of_pers(n):
+    # generation of a list of propertys of pers
+    temp_inf = []
+    temp_inf = ([p[n].name,
+                p[n].health])
+    for item in p[n].larder:
+        temp_inf.append(sum(p[n].larder[item]))
+    return temp_inf
+
+
+def output_pers_inf(start=0, stop=5):
+    # generation a PrettyTable
+    os.system('cls' if os.name == 'nt' else 'clear')
+    th = (['Name',
+           'Health',
+           'bananas',
+           'mangoes',
+           'apples',
+           'potatoes',
+           'wheat',
+           ])
+    table = PrettyTable(th)
+    if stop >= 0:
+        i = start
+        while i < stop:
+            table.add_row(values_of_pers(i))
+            i += 1
+    else:
+        table.add_row(values_of_pers(start))
+    print(table)
+
+
+p = []
+print(p)
+for k in range(5):
+    print(f'k = {k}')
+    create_person(k)
+output_pers_inf(0, 4)
+# game loop
+for year in range(1900, 2001):
+    if year % 4 != 0 or (year % 100 == 0 and year % 400 != 0):
+        number_of_days = 365
+    else:
+        number_of_days = 366
+    for day in range(1, (number_of_days + 1)):
+        for i in p:
+            i.harvesting(day)
+            i.nutrition()
+    for i in p:
+        i.deterioration()
+
+    output_pers_inf(0, 4)
+    sleep(1)
