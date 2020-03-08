@@ -38,7 +38,7 @@ class Persona:
             # print(f'day = {day}, key = {key}, value = {value}')
             # input()
             if day == value:
-                size_of_crops = (210 + randint(-54, 54))
+                size_of_crops = (200 + randint(-54, 54))
                 (self.larder[key]).append(int(size_of_crops * self.ability[key]))
 
     def get_oldest_product(self, prod):
@@ -56,12 +56,14 @@ class Persona:
 
     def nutrition(self):
         ration = 0
+        health_variation = self.health
         for item in self.larder.keys():
             ration += self.get_oldest_product(item)
         if ration < 4:
-            self.health -= (1/365)
+            health_variation -= (2/365)
         elif ration > 4 and self.health < 100:
-            self.health += (1/365)
+            health_variation += (1.5/365)
+        self.health = round(health_variation, 2)
 
     def deterioration(self):
         for prod in self.larder.keys():
@@ -161,8 +163,7 @@ for year in range(1900, 2001):
             i.nutrition()
     for i in p:
         i.deterioration()
-        # print_info(i)
     output_pers_inf(year, 0, 2)
 
     sleep(1)
-    input()
+    # input()
