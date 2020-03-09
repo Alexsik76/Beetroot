@@ -93,23 +93,8 @@ def search_by_value(value, book=book):
 def print_item(item):
     if type(item) == dict:
         for k, v in item:
+            k = values[k]
             print(k, v, sep='\t')
-
-
-# def search_by_last_name(book):
-#     pass
-#
-#
-# def search_by_full_name(book):
-#     pass
-#
-#
-# def search_by_telephone_number(book):
-#     pass
-#
-#
-# def search_by_city_or_state(book):
-#     pass
 
 
 def delete_by_tel_number(book):
@@ -118,3 +103,6 @@ def delete_by_tel_number(book):
 
 def update_by_tel_number(book):
     pass
+
+
+add_item(book)
