@@ -40,6 +40,9 @@ def add_item(book):
         if not tel_num.strip().isnumeric():
             print('Помилка: введений номер містить не лише цифри')
             continue
+        elif len(tel_num.strip()) > 10:
+            print('Помилка: Довжина номера більше 10')
+            continue
         tel_num = tel_num.strip()
         break
     state = input('Введіть область: ')
@@ -65,11 +68,11 @@ def search_by_value(value, book=book):
     print(f'Ведіть {text_value}:')
     search_input = input().strip()
     search_results = []
-    if value == 'state' or value == 'city':
+    if value == 'city':
         for item in book:
             if (
-                    item[state] == search_input.upper()
-                    or item[city] == search_input.upper
+                    item['city'] == search_input.upper()
+                    or item['state'] == search_input.upper()
                  ):
                 search_results.append(item)
     else:
@@ -88,13 +91,47 @@ def search_by_value(value, book=book):
         if y_n.strip().lower() == 'y':
             for res in search_results:
                 print_item(res)
+    print_item(book)
 
 
-def print_item(item):
-    if type(item) == dict:
-        for k, v in item:
-            k = values[k]
-            print(k, v, sep='\t')
+def search(book):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("""
+    Пошук по імені "f"
+    Пошук по прізвищу "l"
+    Пошук по номеру телефону "n"
+    Пошук по області або місту "c"
+    Повернутись до меню "e"
+    """)
+    while True:
+        user_input = input(': ')
+        if user_input == 'f':
+            search_by_value('first_name')
+        elif user_input == 'l':
+            search_by_value('last_name')
+        elif user_input == 'n':
+            search_by_value('tel_num')
+        elif user_input == 'c':
+            search_by_value('city')
+        elif user_input == 'e':
+            finish()
+
+
+def print_item(elem):
+    for k, v in elem.items():
+        k = values[k]
+        print(k, v, sep='\t')
+
+
+def finish():
+    y_n = 'n'
+    while y_n == 'n':
+        print('Повернутись до меню?')
+        y_n = input('y/n:')
+        if y_n.strip().lower() == 'y':
+            user_menu()
+        else:
+            y_n = 'n'
 
 
 def delete_by_tel_number(book):
@@ -105,4 +142,27 @@ def update_by_tel_number(book):
     pass
 
 
-add_item(book)
+def user_menu():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("""
+    Додати запис - натисніть "a"
+    Пошук - натисніть "s"
+    Видалити - натисність "r"
+    Змінити запис - натисніть "c"
+    Завершити роботу - натисніть "q"
+    """)
+    while True:
+        user_input = input(': ')
+        if user_input == 'a':
+            add_item(book)
+        elif user_input == 's':
+            search(book)
+        elif user_input == 'r':
+            delete_by_tel_number(book)
+        elif user_input == 'c':
+            update_by_tel_number(book)
+        elif user_input == 'q':
+            quit()
+
+
+user_menu()
