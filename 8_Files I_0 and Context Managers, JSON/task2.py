@@ -71,13 +71,13 @@ def search_by_value(value, book=book):
     if value == 'city':
         for item in book:
             if (
-                    item['city'] == search_input.upper()
-                    or item['state'] == search_input.upper()
+                    item['city'].lower() == search_input.lower()
+                    or item['state'].lower() == search_input.lower()
                  ):
                 search_results.append(item)
     else:
         for item in book:
-            if item[value] == search_input.upper():
+            if item[value].lower() == search_input.lower():
                 search_results.append(item)
     sr = search_results
     si = search_input
@@ -91,7 +91,6 @@ def search_by_value(value, book=book):
         if y_n.strip().lower() == 'y':
             for res in search_results:
                 print_item(res)
-    print_item(book)
 
 
 def search(book):
