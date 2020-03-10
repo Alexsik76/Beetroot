@@ -22,12 +22,12 @@ with open(name_file) as f:
         print('Створюємо новий список')
         book = []
 values = {
-                'first_name': 'Ім\'я',
-                'last_name': 'Прізвище',
-                'tel_num': 'Номер телефону',
-                'state': 'Область',
-                'city': 'Місто'
-            }
+    'first_name': 'Ім\'я',
+    'last_name': 'Прізвище',
+    'tel_num': 'Номер телефону',
+    'state': 'Область',
+    'city': 'Місто'
+}
 
 
 def add_item(book):
@@ -51,12 +51,12 @@ def add_item(book):
     city = city.strip().title()
     # add entries to book
     book.append({
-                    'first_name': first_name,
-                    'last_name': last_name,
-                    'tel_num': tel_num,
-                    'state': state,
-                    'city': city
-                })
+        'first_name': first_name,
+        'last_name': last_name,
+        'tel_num': tel_num,
+        'state': state,
+        'city': city
+    })
     with open(name_file, 'w') as f:
         json.dump(book, f)
     print(f'Запис на особу {first_name} {last_name} додано до книги.')
@@ -71,9 +71,9 @@ def search_by_value(value, book=book):
     if value == 'city':
         for item in book:
             if (
-                    item['city'].lower() == search_input.lower()
-                    or item['state'].lower() == search_input.lower()
-                 ):
+                item['city'].lower() == search_input.lower()
+                or item['state'].lower() == search_input.lower()
+            ):
                 search_results.append(item)
     else:
         for item in book:
