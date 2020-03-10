@@ -64,21 +64,24 @@ def add_item(book):
 
 def search_by_value(value, book=book):
     text_value = values[value]
+    found_ind = []
     print(f'Пошук за значеням "{text_value}".')
     print(f'Ведіть {text_value}:')
     search_input = input().strip()
     search_results = []
     if value == 'city':
-        for item in book:
+        for i in range(len(book)):
             if (
-                item['city'].lower() == search_input.lower()
-                or item['state'].lower() == search_input.lower()
+                book[i][value].lower() == search_input.lower()
+                or book[i][value].lower() == search_input.lower()
             ):
-                search_results.append(item)
+                search_results.append(book[i])
+                found_ind.append(i)
     else:
-        for item in book:
-            if item[value].lower() == search_input.lower():
-                search_results.append(item)
+        for i in range(len(book)):
+            if book[i][value].lower() == search_input.lower():
+                search_results.append(book[i])
+                found_ind.append(i)
     sr = search_results
     si = search_input
     print(f'За вашим запитом знайдено записів {len(sr)}, що містять {si}.')
@@ -91,6 +94,8 @@ def search_by_value(value, book=book):
         if y_n.strip().lower() == 'y':
             for res in search_results:
                 print_item(res)
+    finish()
+    return found_ind
 
 
 def search(book):
@@ -134,7 +139,20 @@ def finish():
 
 
 def delete_by_tel_number(book):
-    pass
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print('Пошук та видалення запису за номером телефону')
+    found = search_by_value('tel_num', book=book)
+    print('Ви бажаєте видалити цей запис?')
+    y_n = input('y/n:')
+    if y_n.strip().lower() == 'y':
+        ind = found[0]
+        first_name = book[ind]['first_name']
+        last_name = book[ind]['last_name']
+        print(f'Запис на особу {first_name} {last_name} видалено з книги.')
+        book.remove(book[ind])
+        with open(name_file, 'w') as f:
+            json.dump(book, f)
+    finish()
 
 
 def update_by_tel_number(book):
