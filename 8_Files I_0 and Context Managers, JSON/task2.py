@@ -5,7 +5,9 @@ import json
 while True:
     name_file = input('Введіть назву файлу телефонної книги:')
     try:
-        if name_file[-4:] != '.txt':
+        if name_file == '':
+            name_file = 'book3.txt'
+        elif name_file[-4:] != '.txt':
             name_file += '.txt'
         with open(name_file) as f:
             os.system('cls' if os.name == 'nt' else 'clear')
@@ -24,7 +26,7 @@ with open(name_file) as f:
 values = {
     'first_name': 'Ім\'я',
     'last_name': 'Прізвище',
-    'tel_num': 'Номер телефону',
+    'tel_num': 'Телефон',
     'state': 'Область',
     'city': 'Місто'
 }
@@ -85,15 +87,7 @@ def search_by_value(value, book=book):
     sr = search_results
     si = search_input
     print(f'За вашим запитом знайдено записів {len(sr)}, що містять {si}.')
-    if len(search_results) < 4:
-        for res in search_results:
-            print_item(res)
-    else:
-        print('Зписів більше 3 і вони не помістяться на екран')
-        y_n = input('y/n:')
-        if y_n.strip().lower() == 'y':
-            for res in search_results:
-                print_item(res)
+    print_item(search_results)
     return found_ind
 
 
@@ -121,9 +115,13 @@ def search(book):
 
 
 def print_item(elem):
-    for k, v in elem.items():
-        k = values[k]
-        print(k, v, sep='\t')
+    for v in values.values():
+        print(f'\x1b[1m{v:<15}\x1b[0m', end='')
+    print()
+    for i in elem:
+        for v1 in i.values():
+            print(f'{v1:<15}', end='')
+        print()
 
 
 def finish():
