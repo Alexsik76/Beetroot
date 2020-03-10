@@ -94,7 +94,6 @@ def search_by_value(value, book=book):
         if y_n.strip().lower() == 'y':
             for res in search_results:
                 print_item(res)
-    finish()
     return found_ind
 
 
@@ -131,7 +130,8 @@ def finish():
     y_n = 'n'
     while y_n == 'n':
         print('Повернутись до меню?')
-        y_n = input('y/n:')
+        s = 'y/n'
+        y_n = input(f'\x1b[5;31;40m{s}:\x1b[0m')
         if y_n.strip().lower() == 'y':
             user_menu()
         else:
