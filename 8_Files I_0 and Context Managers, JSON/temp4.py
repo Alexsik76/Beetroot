@@ -1,4 +1,3 @@
 import readline
-readline.get_line_buffer()
-readline.insert_text('abcd')
-readline.redisplay()
+s = 'Sik'
+readline.set_startup_hook((lambda: readline.insert_text(input(s))))
