@@ -1,6 +1,7 @@
 # Phone book
 import os
 import json
+import readline
 # enter a file name end check it
 while True:
     name_file = input('Введіть назву файлу телефонної книги:')
@@ -74,8 +75,8 @@ def search_by_value(value, book=book):
     if value == 'city':
         for i in range(len(book)):
             if (
-                book[i][value].lower() == search_input.lower()
-                or book[i][value].lower() == search_input.lower()
+                book[i]['city'].lower() == search_input.lower()
+                or book[i]['state'].lower() == search_input.lower()
             ):
                 search_results.append(book[i])
                 found_ind.append(i)
@@ -118,10 +119,14 @@ def print_item(elem):
     for v in values.values():
         print(f'\x1b[1m{v:<15}\x1b[0m', end='')
     print()
-    for i in elem:
-        for v1 in i.values():
+    if isinstance(elem, dict):
+        for v1 in elem.values():
             print(f'{v1:<15}', end='')
-        print()
+    elif isinstance(elem, list):
+        for i in elem:
+            for v1 in i.values():
+                print(f'{v1:<15}', end='')
+            print()
 
 
 def finish():
@@ -154,7 +159,24 @@ def delete_by_tel_number(book):
 
 
 def update_by_tel_number(book):
-    pass
+    ind = search_by_value('tel_num')
+    item_update = book[ind[0]]
+    print(item_update)
+    input()
+    for key, value in item_update.items():
+        print(f'Змініть значення "{values[key]}, або натисніть "Enter"')
+        s = value
+        readline.set_startup_hook(lambda: readline.insert_text(s))
+        s = (input(': '))
+        item_update[key] = s
+    s = ''
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print('Відредагований запис:')
+    print_item(item_update)
+    book[ind[0]] = item_update
+    with open(name_file, 'w') as f:
+        json.dump(book, f)
+    finish()
 
 
 def user_menu():
