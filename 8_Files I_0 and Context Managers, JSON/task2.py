@@ -1,7 +1,10 @@
 # Phone book
 import os
 import json
-import readline
+try:
+    import readline
+except ImportError:
+    import pyreadline as readline
 # enter a file name end check it
 while True:
     name_file = input('Введіть назву файлу телефонної книги:')
@@ -161,8 +164,6 @@ def delete_by_tel_number(book):
 def update_by_tel_number(book):
     ind = search_by_value('tel_num')
     item_update = book[ind[0]]
-    print(item_update)
-    input()
     for key, value in item_update.items():
         print(f'Змініть значення "{values[key]}, або натисніть "Enter"')
         s = value
