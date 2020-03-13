@@ -1,3 +1,4 @@
+# simple exemple readline
 try:
     import readline
 except ImportError:
