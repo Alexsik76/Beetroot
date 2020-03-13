@@ -1,3 +1,4 @@
+# String manipulation
 word = input('Введите слово: ')
 if len(word) < 2:
     print('Empty String')

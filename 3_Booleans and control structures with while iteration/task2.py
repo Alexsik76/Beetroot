@@ -1,3 +1,4 @@
+# The valid phone number program
 phone_num = input('Введите номер телефона: ')
 if phone_num.isnumeric() and len(phone_num) == 10:
     print('Спасибо за корректный номер')

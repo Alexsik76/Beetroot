@@ -1,3 +1,4 @@
+# The math quiz program
 from random import randint
 user_input = ''
 task_qestion = 0
