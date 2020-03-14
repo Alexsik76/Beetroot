@@ -2,23 +2,9 @@
 
 
 def make_operation(op, *num):
-    res1 = num[0]
-
-    def sum1(a, res=res1):
-        res += a
-        return res
-
-    def subtraction(a, res=res1):
-        res -= a
-        return res
-
-    def multiplication(a, res=res1):
-        global res
-        res *= a
-        return res
-
+    res = num[0]
     if op == '+':
-        map(sum1, num[1:])
+        res = (res += i: for i in num(1: ))
     elif op == '-':
         map(subtraction, num[1:])
     elif op == '*':
