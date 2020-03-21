@@ -81,6 +81,7 @@ class Services:
             self.correct_type(string, self.type)
             return string
 
+
 class Consultation(Services):
     def __init__(self, number, start, finish, date):
         super().__init__(number, date)
@@ -95,6 +96,7 @@ class Preparation_of_documents(Services):
         self.type = 'Підоготовка документів'
 
 # %d%m%y
+
 
 a = Consultation(1, '21.03.20')
 print(a.cost())
