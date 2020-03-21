@@ -6,11 +6,11 @@
 # print(datetime.date(s))
 # t = datetime.localtime()
 # print(t)
-#t1 = (20, 20, 21)
+# t1 = (20, 20, 21)
 # t1 = list(map(int, t1.split(':')))
-#t3 = datetime.datetime(t1)
-#print(t1)
-#t2 = '20:50'
+# t3 = datetime.datetime(t1)
+# print(t1)
+# t2 = '20:50'
 # t11 = time.strptime(t1, '%H:%M')
 # t22 = time.strptime(t2, '%H:%M')
 # rez = time.thread_time
