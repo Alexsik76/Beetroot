@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-# from pathlib import Path
-import glob
-# print(glob.glob('*.*'))
-# path1 = Path(r"C:\Drivers")
-# print(glob.glob(r'path1\*.*'))
-# print(glob.glob('../../../../../*.*'))
-a = glob.glob('c:/Drivers/*/*')
-print(a)
-=======
 # Legal Services
 import time
 
@@ -110,4 +100,3 @@ class Preparation_of_documents(Services):
 
 a = Consultation(1, '21.03.20')
 print(a.cost())
->>>>>>> 6e7f3c4c897cbb6af95399ae826b4e793f5b6918
