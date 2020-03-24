@@ -83,20 +83,20 @@ class Services:
 
 
 class Consultation(Services):
-    def __init__(self, number, start, finish, date):
-        super().__init__(number, date)
+    def __init__(self):
+        super().__init__()
         self.price = 200
         self.type = 'Консультація'
 
 
 class Preparation_of_documents(Services):
-    def __init__(self, number, start, finish, date):
-        super().__init__(number, date)
+    def __init__(self):
+        super().__init__()
         self.price = 100
         self.type = 'Підоготовка документів'
 
 # %d%m%y
 
 
-a = Consultation(1, '21.03.20')
+a = Preparation_of_documents(1, duration=1)
 print(a.cost())
