@@ -9,7 +9,7 @@ class Services:
         self.number = number
         self.time_start = start
         self.time_finish = finish
-        self.duration = duration(start, finish, duration)
+        self.duration = duration
         self.date = date
         self.price = None
         self.local = 'en'
@@ -33,19 +33,19 @@ class Services:
         cost = time * price
         return cost
 
-    def duration(self, start, finish, duration):
+    def f_duration(self):
         ''' Defines duration by the following logic: If the duration is
         specified directly, the start and end are ignored. Otherwise, the
         difference between end and start is returned'''
-        if duration:
-            result = self.correct_type(duration, 'duration')
+        if self.duration:
+            result = self.correct_type(self.duration, 'duration')
             return result
         elif (
-                self.correct_type(start, 'time') and
-                self.correct_type(start, 'time') and
-                (start < finish)
+                self.correct_type(self.start, 'time') and
+                self.correct_type(self.finish, 'time') and
+                (self.start < self.finish)
                 ):
-            return (finish - start)
+            return (self.finish - self.start)
         else:
             print(self.message('Duration error'))
 
@@ -83,10 +83,7 @@ class Services:
 
 
 class Consultation(Services):
-    def __init__(self):
-        super().__init__()
-        self.price = 200
-        self.type = 'Консультація'
+    price = 200
 
 
 class Preparation_of_documents(Services):
@@ -98,5 +95,5 @@ class Preparation_of_documents(Services):
 # %d%m%y
 
 
-a = Preparation_of_documents(1, duration=1)
+a = Consultation(1, duration=1)
 print(a.cost())
