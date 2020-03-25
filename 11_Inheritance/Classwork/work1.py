@@ -69,17 +69,13 @@ class Medium_trucks(Trucks):
         self.speed = 100
 
 
-class Bikes1(Bikes):
-    pass
-
-
 class Heavy_trucks(Trucks):
     def __init__(self):
         self.power = 800
         self.speed = 120
 
 
-b1 = Bikes()
+b1 = Pedal_bikes()
 print(b1.power)
 print(b1.speed)
 print(b1.wheels)
