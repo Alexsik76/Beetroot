@@ -79,7 +79,7 @@ class Heavy_trucks(Trucks):
         self.speed = 120
 
 
-b1 = Bikes1()
+b1 = Bikes()
 print(b1.power)
 print(b1.speed)
 print(b1.wheels)
