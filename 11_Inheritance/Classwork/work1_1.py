@@ -11,8 +11,8 @@ class Bikes(Vehicles):
 
 
 class Pedal_bikes(Bikes):
-    def __init__(self, wheels, speed=30, power=0.5):
-        super().__init__(wheels)
+    def __init__(self, wheels=3, speed=10, power=7):
+        super().__init__(wheels, speed, power)
 
 
 class Motor_bikes(Bikes):
@@ -22,11 +22,11 @@ class Motor_bikes(Bikes):
 
 
 v0 = Vehicles()
-print(v0.wheels, v0.power, v0.speed)
+print(v0.wheels, v0.speed, v0.power)
 b0 = Bikes()
-print(b0.wheels, b0.power, b0.speed)
-pb = Pedal_bikes
-print(pb.wheels, pb.power, pb.speed)
+print(b0.wheels, b0.speed, b0.power)
+pb = Pedal_bikes()
+print(pb.wheels, pb.speed, pb.power)
 # b1 = Pedal_bikes()
 # print(b1.power)
 # print(b1.speed)
