@@ -11,8 +11,8 @@ class Bikes(Vehicles):
 
 
 class Pedal_bikes(Bikes):
-    def __init__(self, wheels=3, speed=10, power=7):
-        super().__init__(wheels, speed, power)
+    def __init__(self):
+        super().__init__()
 
 
 class Motor_bikes(Bikes):
