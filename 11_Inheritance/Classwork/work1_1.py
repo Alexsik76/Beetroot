@@ -7,16 +7,12 @@ class Vehicles:
 
 class Bikes(Vehicles):
     def __init__(self, wheels=2, speed=40, power=20):
-        self.wheels = wheels
-        self.speed = speed
-        self.power = power
+        super().__init__(wheels, speed, power)
 
 
 class Pedal_bikes(Bikes):
-    def __init__(self, wheels, speed, power):
-        super().__init__(self, wheels)
-        self.speed = 40
-        self.power = 0.5
+    def __init__(self, wheels, speed=30, power=0.5):
+        super().__init__(wheels)
 
 
 class Motor_bikes(Bikes):
@@ -29,6 +25,8 @@ v0 = Vehicles()
 print(v0.wheels, v0.power, v0.speed)
 b0 = Bikes()
 print(b0.wheels, b0.power, b0.speed)
+pb = Pedal_bikes
+print(pb.wheels, pb.power, pb.speed)
 # b1 = Pedal_bikes()
 # print(b1.power)
 # print(b1.speed)
