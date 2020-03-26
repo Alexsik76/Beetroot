@@ -25,5 +25,5 @@ class Pedal_bikes_simple():
 
 pb = Pedal_bikes()
 print(pb.wheels, pb.speed, pb.power)
-pbs = Pedal_bikes_simple()
+pbs = Pedal_bikes_simple(power=100)
 print(pbs.wheels, pbs.speed, pbs.power)
