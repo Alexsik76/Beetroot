@@ -12,8 +12,10 @@ class Bikes(Vehicles):
 
 
 class Pedal_bikes(Bikes):
-    power = 0.5
-    speed = 15
+    def __init__(self):
+        super().__init__()
+        self.power = 0.5
+        self.speed = 15
 
 
 class Pedal_bikes_simple():
