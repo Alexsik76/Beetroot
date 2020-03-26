@@ -12,15 +12,18 @@ class Bikes(Vehicles):
 
 
 class Pedal_bikes(Bikes):
-    def __init__(self):
-        super().__init__()
-        self.power = 0.5
-        self.speed = 15
+    power = 0.5
+    speed = 15
+
+
+class Pedal_bikes_simple():
+    def __init__(self, wheels=2, speed=11, power=0.7):
+        self.wheels = wheels
+        self.speed = speed
+        self.power = power
 
 
 pb = Pedal_bikes()
 print(pb.wheels, pb.speed, pb.power)
-# b1 = Pedal_bikes()
-# print(b1.power)
-# print(b1.speed)
-# print(b1.wheels)
+pbs = Pedal_bikes_simple()
+print(pbs.wheels, pbs.speed, pbs.power)
