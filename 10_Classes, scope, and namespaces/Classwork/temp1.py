@@ -1,4 +1,5 @@
 from datetime import datetime
+
 start = input('Введіть час початку: ')
 finish = input('Введіть час закінчення: ')
 t4 = datetime.strptime(start, '%H:%M')
