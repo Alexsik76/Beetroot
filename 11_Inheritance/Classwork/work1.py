@@ -6,76 +6,82 @@ class Vehicles:
 
 
 class Bikes(Vehicles):
-    def __init__(self):
-        self.wheels = 2
-        self.speed = 60
-        self.power = 40
+    def __init__(self, wheels, speed, power):
+        super().__init__(wheels, speed, power)
 
 
 class Cars(Vehicles):
-    def __init__(self):
+    def __init__(self, wheels, speed, power):
+        super().__init__(wheels, speed, power)
         self.wheels = 4
         self.speed = 100
         self.power = 100
 
 
 class Buses(Vehicles):
-    def __init__(self):
+    def __init__(self, wheels, speed, power):
+        super().__init__(wheels, speed, power)
         self.wheels = 4
         self.speed = 80
         self.power = 120
 
 
 class Trucks(Vehicles):
-    def __init__(self):
+    def __init__(self, wheels, speed, power):
+        super().__init__(wheels, speed, power)
         self.wheels = 6
         self.speed = 100
         self.power = 200
 
 
-class Pedal_bikes(Bikes):
-    def __init__(self):
-        self.speed = 40
-        self.power = 0.5
+class PedalBikes(Bikes):
+    def __init__(self, wheels=2, speed=20, power=0.5):
+        super().__init__(wheels, speed, power)
 
 
-class Motor_bikes(Bikes, Cars):
-    def __init__(self):
+class MotorBikes(Bikes, Cars):
+    def __init__(self, wheels, speed, power):
+        super().__init__(wheels, speed, power)
         self.power = 60
         self.speed = 120
 
 
-class Pick_ups(Cars):
+class PickUps(Cars):
     def __init__(self):
+        super().__init__()
         self.power = 60
         self.speed = 80
 
 
-class Sport_cars(Cars):
+class SportCars(Cars):
     def __init__(self):
+        super().__init__()
         self.power = 500
         self.speed = 300
 
 
-class Estate_cars(Cars):
+class EstateCars(Cars):
     def __init__(self):
+        super().__init__()
         self.power = 200
         self.speed = 220
 
 
-class Medium_trucks(Trucks):
+class MediumTrucks(Trucks):
     def __init__(self):
+        super().__init__()
         self.power = 600
         self.speed = 100
 
 
-class Heavy_trucks(Trucks):
+class HeavyTrucks(Trucks):
     def __init__(self):
+        super().__init__()
         self.power = 800
         self.speed = 120
 
 
-b1 = Pedal_bikes()
+b1 = PedalBikes()
 print(b1.power)
 print(b1.speed)
 print(b1.wheels)
