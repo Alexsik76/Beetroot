@@ -10,12 +10,12 @@ delta = t5 - t4
 def last_letter(number):
     last_number = int(str(number)[-1])
     if last_number == 1:
-        last_letter = 'у'
+        letter = 'у'
     elif 1 < last_number < 5:
-        last_letter = 'и'
+        letter = 'и'
     else:
-        last_letter = ''
-    return last_letter
+        letter = ''
+    return letter
 
 
 x = datetime.strptime(str(delta), '%H:%M:%S')
