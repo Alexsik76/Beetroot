@@ -18,7 +18,7 @@ class PedalBikes(Bikes):
         self.speed = 15
 
 
-class PedalBikesSimple():
+class PedalBikesSimple:
     def __init__(self, wheels=2, speed=11, power=0.7):
         self.wheels = wheels
         self.speed = speed
