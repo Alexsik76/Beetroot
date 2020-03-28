@@ -35,7 +35,7 @@ class Trucks(Vehicles):
 
 
 class PedalBikes(Bikes):
-    def __init__(self, wheels=2, speed=20, power=0.5):
+    def __init__(self, wheels, speed, power):
         super().__init__(wheels, speed, power)
 
 
@@ -79,7 +79,7 @@ class HeavyTrucks(Trucks):
         self.speed = 120
 
 
-b1 = PedalBikes()
+b1 = PedalBikes(1, 1, 1)
 print(b1.power)
 print(b1.speed)
 print(b1.wheels)
