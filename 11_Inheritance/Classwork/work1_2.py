@@ -138,6 +138,7 @@ k = 0
 data = ["Class,Number,wheels,speed,power".split(",")]
 for z, i in lists_of_objects.items():
     for j in range(10):
+        print(i)
         temp_power = randint(20, 1000)
         temp_speed = randint(15, 800)
         i.append(list_of_classes[k])
@@ -191,6 +192,14 @@ def statistic(path):
         for line in reader:
             # print(line)
             # print(list_of_classes)
+            list_of_classes =[]
+            list_of_classes = [PedalBikes(),
+                               MotorBikes(),
+                               PickUps(),
+                               SportCars(),
+                               EstateCars(),
+                               MediumTrucks(),
+                               HeavyTrucks()]
             for item in list_of_classes:
                 temp = item
                 print(temp.description)
@@ -202,6 +211,7 @@ def statistic(path):
                     list_of_founded[temp.__class__.__name__] += 1
                     name = f"{line['Class']}{line['Number']}"
                     print(f"{name:15} ==> {line['wheels']:2} {line['speed']:4} {line['power']}")
+
                     break
 
     with open(path) as f_obj:
@@ -212,7 +222,7 @@ def statistic(path):
 
 
 statistic(path)
-g = PedalBikes(0, 0, 0)
+g = PedalBikes()
 print(g.description)
-del(list_of_classes[0])
+list_of_classes[0]
 print(list_of_classes[0].description)
