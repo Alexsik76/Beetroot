@@ -18,7 +18,16 @@ class Vehicles:
         rez = f'\n{self.__class__.__name__}\nwheels: {self.wheels}\n speed: {self.speed}\n power: {self.power}\n'
         return rez
 
+    def intervals(self):
+        i_sp = int(self.speed / 10)
+        i_pow = int(self.power / 10)
+        self.min_sp = self.speed - i_sp
+        self.max_sp = self.speed + i_sp
+        self.min_pow = self.speed - i_pow
+        self.max_pow = self.speed + i_pow
+
     def comparison(self, obj):
+        self.intervals()
         if (obj[0] == self.wheels
                 and self.min_sp <= obj[1] <= self.max_sp
                 and self.min_pow <= obj[1] <= self.max_pow):
@@ -102,12 +111,12 @@ class HeavyTrucks(Trucks):
         self.speed = 120
 
 
-b1 = PedalBikes()
-print(b1.description)
-ht1 = HeavyTrucks(8, 100, 900)
-print(ht1.description)
-print(dir(ht1))
-print(PedalBikes().__class__.__name__)
+# b1 = PedalBikes()
+# print(b1.description)
+# ht1 = HeavyTrucks(8, 100, 900)
+# print(ht1.description)
+# print(dir(ht1))
+# print(PedalBikes().__class__.__name__)
 
 list_of_classes = [PedalBikes(),
                    MotorBikes(),
@@ -133,7 +142,7 @@ for z, i in lists_of_objects.items():
         i.append(list_of_classes[k])
         i[j].power = temp_power
         i[j].speed = temp_speed
-        print(z, j)
+        # print(z, j)
         line = []
         line.append(z)
         line.append(j)
@@ -141,7 +150,7 @@ for z, i in lists_of_objects.items():
         line.append(i[j].speed)
         line.append(i[j].power)
         data.append(line)
-        print(f'{i[j].description}')
+        # print(f'{i[j].description}')
     k += 1
 
 
@@ -158,3 +167,40 @@ def csv_writer(data, path):
 path = "vehicles.csv"
 
 csv_writer(data, path)
+
+
+def statistic(path):
+    list_of_founded = {
+        'IN ALL':       0,
+        'PedalBikes':   0,
+        'MotorBikes':   0,
+        'PickUps':      0,
+        'SportCars':    0,
+        'EstateCars':   0,
+        'MediumTrucks': 0,
+        'HeavyTrucks':  0
+    }
+
+    def csv_dict_reader(path):
+        """
+        Read a CSV file using csv.DictReader
+        """
+        reader = csv.DictReader(path, delimiter=',')
+        for line in reader:
+            for item in list_of_classes:
+                temp = item
+                # print(type(line), line)
+                obj0 = [line['wheels'], line['speed'], line['power']]
+                obj = list(map(int, obj0))
+                if temp.comparison(obj):
+                    list_of_founded['IN ALL'] += 1
+                    list_of_founded[temp.__class__.__name__] += 1
+
+    with open(path) as f_obj:
+        csv_dict_reader(f_obj)
+
+    for key, value in list_of_founded.items():
+        print(f'{key:13}: {value}')
+
+
+statistic(path)
