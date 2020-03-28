@@ -1,8 +1,10 @@
 class Vehicles:
+
     def __init__(self, wheels=0, speed=0, power=0):
         self.wheels = wheels
         self.speed = speed
         self.power = power
+
 
 
 class Bikes(Vehicles):
@@ -24,6 +26,8 @@ class PedalBikesSimple:
         self.speed = speed
         self.power = power
 
+    def w(self):
+        return self.wheels
 
 pb = PedalBikes()
 print(pb.wheels, pb.speed, pb.power)

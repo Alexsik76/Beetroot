@@ -1,4 +1,5 @@
 import csv
+from random import randint
 
 
 class Vehicles:
@@ -7,10 +8,21 @@ class Vehicles:
         self.speed = speed
         self.power = power
 
+    min_sp = None
+    max_sp = None
+    min_pow = None
+    max_pow = None
+
     @property
     def description(self):
         rez = f'\n{self.__class__.__name__}\nwheels: {self.wheels}\n speed: {self.speed}\n power: {self.power}\n'
         return rez
+
+    def comparison(self, obj):
+        if (obj[0] == self.wheels
+                and self.min_sp <= obj[1] <= self.max_sp
+                and self.min_pow <= obj[1] <= self.max_pow):
+            return True
 
 
 class Bikes(Vehicles):
@@ -40,6 +52,7 @@ class Trucks(Vehicles):
         self.wheels = 6
         self.speed = 100
         self.power = 200
+
 
 # last Classes
 
@@ -115,9 +128,13 @@ k = 0
 data = ["Class,Number,wheels,speed,power".split(",")]
 for z, i in lists_of_objects.items():
     for j in range(10):
+        temp_power = randint(20, 1000)
+        temp_speed = randint(15, 800)
         i.append(list_of_classes[k])
+        i[j].power = temp_power
+        i[j].speed = temp_speed
         print(z, j)
-        line=[]
+        line = []
         line.append(z)
         line.append(j)
         line.append(i[j].wheels)
