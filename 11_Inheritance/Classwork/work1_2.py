@@ -3,7 +3,7 @@ from random import randint
 
 
 def random_value(value):
-    return randint((value - int(value/10)), (value + int(value/10)))
+    return randint((value - int(value / 10)), (value + int(value / 10)))
 
 
 class Vehicles:
@@ -23,14 +23,18 @@ class Vehicles:
         if random:
             self.speed = random_value(self.speed)
             self.power = random_value(self.power)
-            print(self.speed)
+
         else:
             self.speed = self.speed
             self.power = self.power
-            print(self.speed)
+
     @property
     def description(self):
         rez = f'\n{self.__class__.__name__}\nwheels: {self.wheels}\n speed: {self.speed}\n power: {self.power}\n'
+        return rez
+
+    def for_csv(self):
+        rez = [self.__class__.__name__, self.wheels, self.speed, self.power]
         return rez
 
     def intervals(self):
@@ -46,7 +50,6 @@ class Vehicles:
         if (obj[0] == self.wheels
                 and self.min_sp <= obj[1] <= self.max_sp
                 and self.min_pow <= obj[1] <= self.max_pow):
-            print(f'{self.min_sp} , {obj[1]} , {self.max_sp}')
             return True
 
 
@@ -108,8 +111,6 @@ class HeavyTrucks(Trucks):
         super().__init__(wheels, speed, power, random)
 
 
-h = PedalBikes(random=True)
-print(h.description)
 list_of_classes = [PedalBikes(),
                    MotorBikes(),
                    PickUps(),
@@ -125,21 +126,33 @@ lists_of_objects = {'PedalBikes': [],
                     'MediumTrucks': [],
                     'HeavyTrucks': []
                     }
-k = 0
-data = ["Class,Number,wheels,speed,power".split(",")]
+
+
+def random_class():
+    k = randint(1, 7)
+    if k == 1:
+        return PedalBikes()
+    elif k == 2:
+        return MotorBikes()
+    elif k == 3:
+        return PickUps()
+    elif k == 4:
+        return SportCars()
+    elif k == 5:
+        return EstateCars()
+    elif k == 6:
+        return MediumTrucks()
+    else:
+        return HeavyTrucks()
+
+
+data = ["Class,wheels,speed,power".split(",")]
 for z, i in lists_of_objects.items():
     for j in range(10):
-        i.append(list_of_classes[k])
-        print(z, j)
-        line = []
-        line.append(z)
-        line.append(j)
-        line.append(i[j].wheels)
-        line.append(i[j].speed)
-        line.append(i[j].power)
+        temp_object = random_class()
+        i.append(temp_object)
+        line = temp_object.for_csv()
         data.append(line)
-        print(f'{i[j].description}')
-    k += 1
 
 
 def csv_writer(data, path):
@@ -159,14 +172,14 @@ csv_writer(data, path)
 
 def statistic(path):
     list_of_founded = {
-        'IN ALL':       0,
-        'PedalBikes':   0,
-        'MotorBikes':   0,
-        'PickUps':      0,
-        'SportCars':    0,
-        'EstateCars':   0,
+        'IN ALL': 0,
+        'PedalBikes': 0,
+        'MotorBikes': 0,
+        'PickUps': 0,
+        'SportCars': 0,
+        'EstateCars': 0,
         'MediumTrucks': 0,
-        'HeavyTrucks':  0
+        'HeavyTrucks': 0
     }
 
     def csv_dict_reader(path):
@@ -177,7 +190,6 @@ def statistic(path):
         for line in reader:
             for item in list_of_classes:
                 temp = item
-                # print(type(line), line)
                 obj0 = [line['wheels'], line['speed'], line['power']]
                 obj = list(map(int, obj0))
                 if temp.comparison(obj):
