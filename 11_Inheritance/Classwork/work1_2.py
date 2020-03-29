@@ -7,17 +7,24 @@ def random_value(value):
 
 
 class Vehicles:
-    min_sp = None
-    max_sp = None
-    min_pow = None
-    max_pow = None
-
     def __init__(self, wheels, speed, power, random=True):
         self.random = random
         self.wheels = wheels
         self.speed = speed
         self.power = power
         self.speed_power(self.random)
+        self.min_sp = None
+        self.max_sp = None
+        self.min_pow = None
+        self.max_pow = None
+
+    def intervals(self):
+        i_sp = int(self.speed / 10)
+        i_pow = int(self.power / 10)
+        self.min_sp = self.speed - i_sp
+        self.max_sp = self.speed + i_sp
+        self.min_pow = self.power - i_pow
+        self.max_pow = self.power + i_pow
 
     def speed_power(self, random):
         if random:
@@ -37,19 +44,11 @@ class Vehicles:
         rez = [self.__class__.__name__, self.wheels, self.speed, self.power]
         return rez
 
-    def intervals(self):
-        i_sp = int(self.speed / 10)
-        i_pow = int(self.power / 10)
-        self.min_sp = self.speed - i_sp
-        self.max_sp = self.speed + i_sp
-        self.min_pow = self.speed - i_pow
-        self.max_pow = self.speed + i_pow
-
     def comparison(self, obj):
         self.intervals()
         if (obj[0] == self.wheels
                 and self.min_sp <= obj[1] <= self.max_sp
-                and self.min_pow <= obj[1] <= self.max_pow):
+                and self.min_pow <= obj[2] <= self.max_pow):
             return True
 
 
@@ -111,23 +110,6 @@ class HeavyTrucks(Trucks):
         super().__init__(wheels, speed, power, random)
 
 
-list_of_classes = [PedalBikes(),
-                   MotorBikes(),
-                   PickUps(),
-                   SportCars(),
-                   EstateCars(),
-                   MediumTrucks(),
-                   HeavyTrucks()]
-lists_of_objects = {'PedalBikes': [],
-                    'MotorBikes': [],
-                    'PickUps': [],
-                    'SportCars': [],
-                    'EstateCars': [],
-                    'MediumTrucks': [],
-                    'HeavyTrucks': []
-                    }
-
-
 def random_class():
     k = randint(1, 7)
     if k == 1:
@@ -147,12 +129,13 @@ def random_class():
 
 
 data = ["Class,wheels,speed,power".split(",")]
-for z, i in lists_of_objects.items():
-    for j in range(10):
-        temp_object = random_class()
-        i.append(temp_object)
-        line = temp_object.for_csv()
-        data.append(line)
+lists_of_objects = []
+
+for j in range(1000):
+    temp_object = random_class()
+    lists_of_objects.append(temp_object)
+    line = temp_object.for_csv()
+    data.append(line)
 
 
 def csv_writer(data, path):
@@ -168,6 +151,16 @@ def csv_writer(data, path):
 path = "vehicles.csv"
 
 csv_writer(data, path)
+
+stand_objects = [
+    PedalBikes(random=False),
+    MotorBikes(random=False),
+    PickUps(random=False),
+    SportCars(random=False),
+    EstateCars(random=False),
+    MediumTrucks(random=False),
+    HeavyTrucks(random=False)
+]
 
 
 def statistic(path):
@@ -188,13 +181,14 @@ def statistic(path):
         """
         reader = csv.DictReader(path, delimiter=',')
         for line in reader:
-            for item in list_of_classes:
-                temp = item
+            for item in stand_objects:
                 obj0 = [line['wheels'], line['speed'], line['power']]
                 obj = list(map(int, obj0))
-                if temp.comparison(obj):
+                if item.comparison(obj):
                     list_of_founded['IN ALL'] += 1
-                    list_of_founded[temp.__class__.__name__] += 1
+                    list_of_founded[item.__class__.__name__] += 1
+                    # print(item.description)
+                    break
 
     with open(path) as f_obj:
         csv_dict_reader(f_obj)
@@ -204,3 +198,5 @@ def statistic(path):
 
 
 statistic(path)
+# for i in stand_objects:
+#     print(f'{i.__class__.__name__:13} ==> {i.min_sp}<{i.speed}>{i.max_sp}, {i.min_pow}<{i.power}>{i.max_pow}')
