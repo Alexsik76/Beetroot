@@ -12,12 +12,12 @@ class Vehicles:
     min_pow = None
     max_pow = None
 
-    def __init__(self, wheels, speed, power, random=False):
+    def __init__(self, wheels, speed, power, random=True):
         self.random = random
         self.wheels = wheels
         self.speed = speed
         self.power = power
-        self.speed_power(random)
+        self.speed_power(self.random)
 
     def speed_power(self, random):
         if random:
@@ -51,22 +51,22 @@ class Vehicles:
 
 
 class Bikes(Vehicles):
-    def __init__(self, wheels, speed, power, random=False):
+    def __init__(self, wheels, speed, power, random=True):
         super().__init__(wheels, speed, power, random)
 
 
 class Cars(Vehicles):
-    def __init__(self, wheels, speed, power, random=False):
+    def __init__(self, wheels, speed, power, random=True):
         super().__init__(wheels, speed, power, random)
 
 
 class Buses(Vehicles):
-    def __init__(self, wheels, speed, power, random=False):
+    def __init__(self, wheels, speed, power, random=True):
         super().__init__(wheels, speed, power, random)
 
 
 class Trucks(Vehicles):
-    def __init__(self, wheels, speed, power, random=False):
+    def __init__(self, wheels, speed, power, random=True):
         super().__init__(wheels, speed, power, random)
 
 
@@ -74,47 +74,121 @@ class Trucks(Vehicles):
 
 
 class PedalBikes(Bikes):
-    def __init__(self, wheels=2, speed=20, power=0.5, random=False):
+    def __init__(self, wheels=2, speed=20, power=15, random=True):
         super().__init__(wheels, speed, power, random)
 
 
 class MotorBikes(Bikes, Cars):
-    def __init__(self, wheels=2, speed=180, power=200, random=False):
+    def __init__(self, wheels=2, speed=180, power=200, random=True):
         super().__init__(wheels, speed, power, random)
 
 
 class PickUps(Cars):
-    def __init__(self, wheels=4, speed=80, power=90, random=False):
+    def __init__(self, wheels=4, speed=80, power=90, random=True):
         super().__init__(wheels, speed, power, random)
 
 
 class SportCars(Cars):
-    def __init__(self, wheels=4, speed=300, power=500, random=False):
+    def __init__(self, wheels=4, speed=300, power=500, random=True):
         super().__init__(wheels, speed, power, random)
 
 
 class EstateCars(Cars):
-    def __init__(self, wheels=4, speed=200, power=200, random=False):
+    def __init__(self, wheels=4, speed=200, power=200, random=True):
         super().__init__(wheels, speed, power, random)
 
 
 class MediumTrucks(Trucks):
-    def __init__(self, wheels=6, speed=130, power=250, random=False):
+    def __init__(self, wheels=6, speed=130, power=250, random=True):
         super().__init__(wheels, speed, power, random)
 
 
 class HeavyTrucks(Trucks):
-    def __init__(self, wheels=8, speed=111, power=800, random=False):
+    def __init__(self, wheels=8, speed=111, power=800, random=True):
         super().__init__(wheels, speed, power, random)
 
 
-# b1 = PedalBikes()
-# print(b1.description)
-# ht1 = HeavyTrucks(8, 100, 900)
-# print(ht1.description)
-# print(dir(ht1))
-# print(PedalBikes().__class__.__name__)
-#
+h = PedalBikes(random=True)
+print(h.description)
+list_of_classes = [PedalBikes(),
+                   MotorBikes(),
+                   PickUps(),
+                   SportCars(),
+                   EstateCars(),
+                   MediumTrucks(),
+                   HeavyTrucks()]
+lists_of_objects = {'PedalBikes': [],
+                    'MotorBikes': [],
+                    'PickUps': [],
+                    'SportCars': [],
+                    'EstateCars': [],
+                    'MediumTrucks': [],
+                    'HeavyTrucks': []
+                    }
+k = 0
+data = ["Class,Number,wheels,speed,power".split(",")]
+for z, i in lists_of_objects.items():
+    for j in range(10):
+        i.append(list_of_classes[k])
+        print(z, j)
+        line = []
+        line.append(z)
+        line.append(j)
+        line.append(i[j].wheels)
+        line.append(i[j].speed)
+        line.append(i[j].power)
+        data.append(line)
+        print(f'{i[j].description}')
+    k += 1
 
-h = HeavyTrucks(random=True)
-print(h.speed, h.power)
+
+def csv_writer(data, path):
+    """
+    Write data to a CSV file path
+    """
+    with open(path, "w", newline='') as csv_file:
+        writer = csv.writer(csv_file, delimiter=',')
+        for line1 in data:
+            writer.writerow(line1)
+
+
+path = "vehicles.csv"
+
+csv_writer(data, path)
+
+
+def statistic(path):
+    list_of_founded = {
+        'IN ALL':       0,
+        'PedalBikes':   0,
+        'MotorBikes':   0,
+        'PickUps':      0,
+        'SportCars':    0,
+        'EstateCars':   0,
+        'MediumTrucks': 0,
+        'HeavyTrucks':  0
+    }
+
+    def csv_dict_reader(path):
+        """
+        Read a CSV file using csv.DictReader
+        """
+        reader = csv.DictReader(path, delimiter=',')
+        for line in reader:
+            for item in list_of_classes:
+                temp = item
+                # print(type(line), line)
+                obj0 = [line['wheels'], line['speed'], line['power']]
+                obj = list(map(int, obj0))
+                if temp.comparison(obj):
+                    list_of_founded['IN ALL'] += 1
+                    list_of_founded[temp.__class__.__name__] += 1
+
+    with open(path) as f_obj:
+        csv_dict_reader(f_obj)
+
+    for key, value in list_of_founded.items():
+        print(f'{key:13}: {value}')
+
+
+statistic(path)
