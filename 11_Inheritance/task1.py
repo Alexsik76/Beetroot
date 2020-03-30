@@ -37,13 +37,12 @@ class Student(Person):
             return self.age - 6
 
     def introduce(self):
-        string_introduce = f''' 
-        My name is {self.name}.
-        I'm {self.age} years old.
-        I'm student of {self.class_number} class.'''
+        string_introduce = (f"My name is {self.name}.\n"
+                            f"I'm {self.age} years old.\n"
+                            f"I'm student of the {self.class_number}'th class."
+                            )
         print(string_introduce)
 
 
 v = Student('Vova', 13, 'Number 3')
-print(v.class_number)
 v.introduce()
