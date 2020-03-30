@@ -2,8 +2,8 @@
 
 
 class Product:
-    def __init__(self, type, name, price):
-        self.type = type
+    def __init__(self, type1, name, price):
+        self.type = type1
         self.name = name
         self.price = price
 
@@ -19,11 +19,13 @@ class ProductStore:
     def __init__(self):
         self.store = []
 
-    def except_decorator(self, func):
-        try:
-            func()
-        except TypeError as string:
-            print(string)
+    def except_decorator(func):
+        def wrapper(*args, **kwargs):
+            try:
+                func(*args, **kwargs)
+            except TypeError as string:
+                print(string)
+        return wrapper
 
     @except_decorator
     def add(self, product, amount):
@@ -36,8 +38,9 @@ class ProductStore:
         })
 
 
-silmag = ProductStore
+silmag = ProductStore()
 
-silmag.add(bananas, 100)
+print(apples)
+silmag.add(apples, 100)
 
 print(silmag.store)
