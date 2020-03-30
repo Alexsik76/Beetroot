@@ -4,13 +4,16 @@ import calendar
 
 class Mathematician:
 
-    def square_nums(self, arg):
+    @staticmethod
+    def square_nums(arg):
         return list(map(lambda x: x**2, arg))
 
-    def remove_positives(self, arg):
+    @staticmethod
+    def remove_positives(arg):
         return list(filter(lambda x: x < 0, arg))
 
-    def filter_leaps(self, arg):
+    @staticmethod
+    def filter_leaps(arg):
         return list(filter(calendar.isleap, arg))
 
 
