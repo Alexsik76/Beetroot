@@ -30,8 +30,9 @@ class Student(Person):
     def __init__(self, name, age, school, class_number=None):
         super().__init__(name, age, school)
         self.class_number = class_number
-        self.class_number = self.get_class_number()
+        self.class_number = self.get_class_number
 
+    @property
     def get_class_number(self):
         if not self.class_number:
             return self.age - 6
