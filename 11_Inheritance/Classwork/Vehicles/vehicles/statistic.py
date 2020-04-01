@@ -25,13 +25,9 @@ def statistic(data):
     for line in data:
         list_of_power.append(line[2])
         for item in stand_objects:
-            # print(item.__class__.__name__)
-            # print(item.description)
-            if item.comparison(data):
-                print (item.description)
+            if item.comparison(line):
                 list_of_founded['IN ALL'] += 1
                 list_of_founded[item.__class__.__name__] += 1
-            # print(item.description)
                 break
     x = list(list_of_founded.values())[1:]
     s = list(list_of_founded.keys())[1:]
@@ -42,11 +38,6 @@ def statistic(data):
 
     ax1.pie(x, labels=s, shadow=True, autopct='%1.1f%%')
     ax1.set_title('All vehicles')
-    # bar()
-    # ax2.bar(s, x)
-    # ax2.set_title('Simple bar chart')
-    # ax2.grid(True)  # линии вспомогательной сетки
-    # scatter
     ax2.scatter(x=range(1000), y=list_of_power, marker='o', c='g', edgecolor='b')
     ax2.set_title('Scatter: Powers of vehicles')
     ax2.set_xlabel('vehicles')
