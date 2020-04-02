@@ -7,11 +7,11 @@ else:
         print('F')
     elif rat == 40:
         print('E')
-    elif rat > 40 and rat < 60:
+    elif 40 < rat < 60:
         print('D')
-    elif rat > 59 and rat < 74:
+    elif 59 < rat < 74:
         print('C')
-    elif rat > 74 and rat < 90:
+    elif 74 < rat < 90:
         print('B')
     elif rat >= 90:
         print('A')

@@ -7,5 +7,4 @@ index_of_operator = (
                     )
 a = user_input[(index_of_operator - 1)]
 b = user_input[(index_of_operator + 1)]
-operator = user_input[(index_of_operator)]
-if operator == '+':
+operator = user_input[index_of_operator]

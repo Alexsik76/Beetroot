@@ -15,17 +15,20 @@ chicken_wings = Product('meet', 'chicken_wings', 22)
 pork_head = Product('meet', 'pork head', 33)
 
 
+def except_decorator(func):
+    def wrapper(*args, **kwargs):
+        try:
+            func(*args, **kwargs)
+        except TypeError as string:
+            print(string)
+        # return result
+    return wrapper
+
 class ProductStore:
     def __init__(self):
         self.store = []
 
-    def except_decorator(func):
-        def wrapper(*args, **kwargs):
-            try:
-                func(*args, **kwargs)
-            except TypeError as string:
-                print(string)
-        return wrapper
+
 
     @except_decorator
     def add(self, product, amount):

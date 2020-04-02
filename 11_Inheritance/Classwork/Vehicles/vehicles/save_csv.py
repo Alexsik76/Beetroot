@@ -1,5 +1,4 @@
 import csv
-from vehicles import generate
 
 
 def csv_writer(data, path):
@@ -10,6 +9,3 @@ def csv_writer(data, path):
         writer = csv.writer(csv_file, delimiter=',')
         for line1 in data:
             writer.writerow(line1)
-
-
-

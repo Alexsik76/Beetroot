@@ -1,5 +1,6 @@
-from vehicles import classes
 from matplotlib import pyplot as plt
+from vehicles import classes
+
 
 def statistic(data):
     stand_objects = [
