@@ -8,6 +8,5 @@ for i in range(50):
 # s = str(b'\xF0\x9F\x8E\xB2', 'utf-8')
 # print(s, end='')
 
-asdasd
 print('Hello')
-qwqw
+
