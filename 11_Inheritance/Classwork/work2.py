@@ -18,4 +18,5 @@ c = a.transpose()
 print(c)
 print('=' * 80)
 c = np.linalg.inv(a)
+c = c
 print(c)
