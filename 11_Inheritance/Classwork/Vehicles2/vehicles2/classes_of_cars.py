@@ -14,7 +14,6 @@ class Vehicles:
         self.capacity_of_people = capacity_of_people
         self.fuel_costs = fuel_costs
 
-
     def speed_power(self, random):
         if random:
             self.speed = random_value(self.speed)
@@ -33,67 +32,60 @@ class Vehicles:
         rez = [self.__class__.__name__, self.wheels, self.speed, self.power]
         return rez
 
-    def comparison(self, obj):
-        self.intervals()
-        if (obj[0] == self.wheels
-                and self.min_sp <= obj[1] <= self.max_sp
-                and self.min_pow <= obj[2] <= self.max_pow):
-            return True
-
 
 class Bikes(Vehicles):
-    def __init__(self, wheels, speed, power, random=True):
-        super().__init__(wheels, speed, power, random)
+    def __init__(self, wheels, speed, power, load_capacity, capacity_of_people, fuel_costs):
+        super().__init__(wheels, speed, power, load_capacity, capacity_of_people, fuel_costs)
 
 
 class Cars(Vehicles):
-    def __init__(self, wheels, speed, power, random=True):
-        super().__init__(wheels, speed, power, random)
+    def __init__(self, wheels, speed, power, load_capacity, capacity_of_people, fuel_costs):
+        super().__init__(wheels, speed, power, load_capacity, capacity_of_people, fuel_costs)
 
 
 class Buses(Vehicles):
-    def __init__(self, wheels, speed, power, random=True):
-        super().__init__(wheels, speed, power, random)
+    def __init__(self, wheels, speed, power, load_capacity, capacity_of_people, fuel_costs):
+        super().__init__(wheels, speed, power, load_capacity, capacity_of_people, fuel_costs)
 
 
 class Trucks(Vehicles):
-    def __init__(self, wheels, speed, power, random=True):
-        super().__init__(wheels, speed, power, random)
+    def __init__(self, wheels, speed, power, load_capacity, capacity_of_people, fuel_costs):
+        super().__init__(wheels, speed, power, load_capacity, capacity_of_people, fuel_costs)
 
 
 # last Classes
 
 
 class PedalBikes(Bikes):
-    def __init__(self, wheels=2, speed=20, power=15, random=True):
-        super().__init__(wheels, speed, power, random)
+    def __init__(self, wheels, speed, load_capacity):
+        super().__init__(wheels, speed, load_capacity)
 
 
 class MotorBikes(Bikes, Cars):
-    def __init__(self, wheels=2, speed=180, power=200, random=True):
-        super().__init__(wheels, speed, power, random)
+    def __init__(self, wheels, power, speed, load_capacity, fuel_costs):
+        super().__init__(wheels, power, speed, load_capacity, fuel_costs)
 
 
-class PickUps(Cars):
-    def __init__(self, wheels=4, speed=80, power=90, random=True):
-        super().__init__(wheels, speed, power, random)
+class Minibus(Buses):
+    def __init__(self, wheels, power, speed, load_capacity, capacity_of_people, fuel_costs):
+        super().__init__(wheels, power, speed, load_capacity, capacity_of_people, fuel_costs)
 
 
 class SportCars(Cars):
-    def __init__(self, wheels=4, speed=300, power=500, random=True):
-        super().__init__(wheels, speed, power, random)
+    def __init__(self, wheels, power, speed, load_capacity, capacity_of_people, fuel_costs):
+        super().__init__(wheels, speed, power, load_capacity, capacity_of_people, fuel_costs)
 
 
 class EstateCars(Cars):
-    def __init__(self, wheels=4, speed=200, power=200, random=True):
-        super().__init__(wheels, speed, power, random)
+    def __init__(self, wheels, power, speed, load_capacity, capacity_of_people, fuel_costs):
+        super().__init__(wheels, speed, power, load_capacity, capacity_of_people, fuel_costs)
 
 
 class MediumTrucks(Trucks):
-    def __init__(self, wheels=6, speed=130, power=250, random=True):
-        super().__init__(wheels, speed, power, random)
+    def __init__(self, wheels, power, speed, load_capacity, capacity_of_people, fuel_costs):
+        super().__init__(wheels, speed, power, load_capacity, capacity_of_people, fuel_costs)
 
 
 class HeavyTrucks(Trucks):
-    def __init__(self, wheels=8, speed=111, power=800, random=True):
-        super().__init__(wheels, speed, power, random)
+    def __init__(self, wheels, power, speed, load_capacity, capacity_of_people, fuel_costs):
+        super().__init__(wheels, speed, power, load_capacity, capacity_of_people, fuel_costs)
