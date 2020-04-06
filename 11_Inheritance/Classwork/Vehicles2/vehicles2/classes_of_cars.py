@@ -4,30 +4,16 @@ from random import randint
 def random_value(value):
     return randint((value - int(value / 10)), (value + int(value / 10)))
 
-price_of_fuel = 25
-
 
 class Vehicles:
-    def __init__(self, wheels, speed, power, load_capacity, capacity_of_people, fuel_costs, random=True):
-        self.random = random
+    def __init__(self, wheels, speed, power, load_capacity, capacity_of_people, fuel_costs):
         self.wheels = wheels
         self.speed = speed
         self.power = power
-        self.speed_power(self.random)
-        self.min_sp = None
-        self.max_sp = None
-        self.min_pow = None
-        self.max_pow = None
         self.load_capacity = load_capacity
         self.capacity_of_people = capacity_of_people
         self.fuel_costs = fuel_costs
-    def intervals(self):
-        i_sp = int(self.speed / 10)
-        i_pow = int(self.power / 10)
-        self.min_sp = self.speed - i_sp
-        self.max_sp = self.speed + i_sp
-        self.min_pow = self.power - i_pow
-        self.max_pow = self.power + i_pow
+
 
     def speed_power(self, random):
         if random:

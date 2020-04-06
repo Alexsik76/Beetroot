@@ -148,7 +148,7 @@ def csv_writer(data, path):
             writer.writerow(line1)
 
 
-path = "vehicles.csv"
+path = "vehicles2.csv"
 
 csv_writer(data, path)
 

@@ -1,5 +1,5 @@
 from random import randint
-from vehicles import classes_of_cars
+from vehicles2 import classes_of_cars
 
 
 def generate():

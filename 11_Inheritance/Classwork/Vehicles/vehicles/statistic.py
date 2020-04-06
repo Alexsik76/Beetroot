@@ -38,10 +38,10 @@ def statistic(data):
     )
 
     ax1.pie(x, labels=s, shadow=True, autopct='%1.1f%%')
-    ax1.set_title('All vehicles')
+    ax1.set_title('All vehicles2')
     ax2.scatter(x=range(1000), y=list_of_power, marker='o', c='g', edgecolor='b')
-    ax2.set_title('Scatter: Powers of vehicles')
-    ax2.set_xlabel('vehicles')
+    ax2.set_title('Scatter: Powers of vehicles2')
+    ax2.set_xlabel('vehicles2')
     ax2.set_ylabel('power')
 
     plt.show()

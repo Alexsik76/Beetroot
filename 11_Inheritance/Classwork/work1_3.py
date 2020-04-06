@@ -150,7 +150,7 @@ def csv_writer(data, path):
             writer.writerow(line1)
 
 
-path = "vehicles.csv"
+path = "vehicles2.csv"
 
 csv_writer(data, path)
 
@@ -209,15 +209,15 @@ def statistic(path):
     )
 
     ax1.pie(x, labels=s, shadow=True, autopct='%1.1f%%')
-    ax1.set_title('All vehicles')
+    ax1.set_title('All vehicles2')
     # bar()
     ax2.bar(s, x)
     ax2.set_title('Simple bar chart')
     ax2.grid(True)  # линии вспомогательной сетки
     # scatter
     ax3.scatter(x=range(1000), y=list_of_power, marker='o', c='g', edgecolor='b')
-    ax3.set_title('Scatter: Powers of vehicles')
-    ax3.set_xlabel('vehicles')
+    ax3.set_title('Scatter: Powers of vehicles2')
+    ax3.set_xlabel('vehicles2')
     ax3.set_ylabel('power')
 
     plt.show()
