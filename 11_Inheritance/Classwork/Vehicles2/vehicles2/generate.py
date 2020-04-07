@@ -3,9 +3,9 @@ from vehicles2 import classes_of_cars
 
 
 def generate():
+    k = randint(1, 7)
 
     def random_class():
-        k = randint(1, 7)
         if k == 1:
             return classes_of_cars.PedalBikes()
         elif k == 2:

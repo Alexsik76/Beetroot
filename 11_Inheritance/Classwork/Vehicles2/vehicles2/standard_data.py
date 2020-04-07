@@ -43,7 +43,7 @@ def standard_vehicles():
         },
         'MediumTrucks': {  # Mercedes-Benz Sprinter 316 CDI L4H2
             'wheels': 4,
-            'speed': 250,
+            'speed': 130,
             'power': 163,
             'load_capacity': 3500,
             'capacity_of_people': 3,
