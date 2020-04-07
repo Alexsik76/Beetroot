@@ -1,3 +1,4 @@
+# TODO need to remake
 def comparison(obj):
     intervals()
     if (obj[0] == wheels

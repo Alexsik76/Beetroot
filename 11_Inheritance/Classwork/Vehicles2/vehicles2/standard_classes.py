@@ -56,12 +56,3 @@ standard_data = {
         'fuel_costs': 20.6
     }
 }
-
-
-def standard_vehicles():
-    matrix = [['name', 'wheels', 'speed', 'power', 'load_capacity', 'capacity_of_people', 'fuel_costs']]
-    for key, value in standard_data.items():
-        s = f"{key},{value['wheels']},{value['speed']},{value['power']}," \
-            f"{value['load_capacity']},{value['capacity_of_people']},{value['fuel_costs']}"
-        matrix.append(s.split(','))
-    return matrix

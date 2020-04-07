@@ -6,6 +6,7 @@ def random_value(value):
 
 
 class Vehicles:
+
     def __init__(self, wheels, speed, power, load_capacity, capacity_of_people, fuel_costs):
         self.wheels = wheels
         self.speed = speed
@@ -13,6 +14,7 @@ class Vehicles:
         self.load_capacity = load_capacity
         self.capacity_of_people = capacity_of_people
         self.fuel_costs = fuel_costs
+        self.busy = False
 
     def speed_power(self, random):
         if random:

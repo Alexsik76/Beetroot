@@ -1,5 +1,5 @@
 from random import randint, uniform
-from vehicles2 import standard_data
+from vehicles2 import standard_classes
 
 
 def intervals(value):
@@ -13,6 +13,6 @@ def intervals(value):
 
 
 def get_param(classes):
-    st_params = standard_data.standard_data[classes]
+    st_params = standard_classes.standard_data[classes]
     rand_param = list(map(intervals, st_params.values()))
     return rand_param

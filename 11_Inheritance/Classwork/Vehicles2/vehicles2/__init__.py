@@ -1,1 +1,9 @@
-__all__: object = ["classes_of_cars", "generate", "save_csv", "read_csv", "statistic", "class_cargo", "random_param"]
+__all__: object = ["classes_of_cars",
+                   "random_classes",
+                   "save_csv",
+                   "read_csv",
+                   "statistic",
+                   "class_cargo",
+                   "random_param",
+                   "standard_classes"
+                   ]
