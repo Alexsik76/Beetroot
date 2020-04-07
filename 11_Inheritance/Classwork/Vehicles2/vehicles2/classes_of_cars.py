@@ -25,11 +25,21 @@ class Vehicles:
 
     @property
     def description(self):
-        rez = f'\n{self.__class__.__name__}\nwheels: {self.wheels}\n speed: {self.speed}\n power: {self.power}\n'
+        rez = f'\n{self.__class__.__name__}\n{"wheels":.<25}{self.wheels}\n{"speed:":.<25}{self.speed}' \
+              f'\n{"power:":.<25}{self.power}\n{"load capacity:":.<25}{self.load_capacity}' \
+              f'\n{"capacity of people:":.<25}{self.capacity_of_people}\n{"fuel costs:":.<25}{self.fuel_costs}'
         return rez
 
     def for_csv(self):
-        rez = [self.__class__.__name__, self.wheels, self.speed, self.power]
+        rez = [
+            self.__class__.__name__,
+            self.wheels,
+            self.speed,
+            self.power,
+            self.load_capacity,
+            self.capacity_of_people,
+            self.fuel_costs
+        ]
         return rez
 
 
@@ -57,13 +67,13 @@ class Trucks(Vehicles):
 
 
 class PedalBikes(Bikes):
-    def __init__(self, wheels, speed, load_capacity):
-        super().__init__(wheels, speed, load_capacity)
+    def __init__(self, wheels, power, speed, load_capacity, capacity_of_people, fuel_costs):
+        super().__init__(wheels, power, speed, load_capacity, capacity_of_people, fuel_costs)
 
 
 class MotorBikes(Bikes, Cars):
-    def __init__(self, wheels, power, speed, load_capacity, fuel_costs):
-        super().__init__(wheels, power, speed, load_capacity, fuel_costs)
+    def __init__(self, wheels, power, speed, load_capacity, capacity_of_people, fuel_costs):
+        super().__init__(wheels, power, speed, load_capacity, capacity_of_people, fuel_costs)
 
 
 class Minibus(Buses):
