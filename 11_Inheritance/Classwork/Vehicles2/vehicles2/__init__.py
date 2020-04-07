@@ -1,5 +1,5 @@
 __all__: object = ["classes_of_cars",
-                   "random_classes",
+                   "random_vehicles",
                    "save_csv",
                    "read_csv",
                    "statistic",

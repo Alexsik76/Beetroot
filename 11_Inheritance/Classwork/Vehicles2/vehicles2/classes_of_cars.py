@@ -16,15 +16,6 @@ class Vehicles:
         self.fuel_costs = fuel_costs
         self.busy = False
 
-    def speed_power(self, random):
-        if random:
-            self.speed = random_value(self.speed)
-            self.power = random_value(self.power)
-
-        else:
-            self.speed = self.speed
-            self.power = self.power
-
     @property
     def description(self):
         rez = f'\n{self.__class__.__name__}\n{"wheels":.<25}{self.wheels}\n{"speed:":.<25}{self.speed}' \

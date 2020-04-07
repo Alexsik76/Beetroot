@@ -1,6 +1,6 @@
 import csv
 from vehicles2.standard_classes import standard_data
-from vehicles2.random_classes import get_random_class, matrix_objects
+from vehicles2.random_vehicles import get_random_class, matrix_objects
 
 
 def csv_writer(func):
