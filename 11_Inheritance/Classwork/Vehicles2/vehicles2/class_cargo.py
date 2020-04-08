@@ -12,11 +12,8 @@ class Cargo:
     def free_vehicles(self):
         return list(filter(lambda x: not x.busy, matrix_objects))
 
-    # todo create dict of free_vehicles
-    @property
-    def dict_free(self):
-        numbers = list(range(len(self.free_vehicles)))
-        dict_to_sort = dict.fromkeys(numbers)
-        for i in numbers:
-            dict_to_sort[i] = self.free_vehicles[i]
-        return dict_to_sort
+    def sort_by_fuel(self):
+        return sorted(self.free_vehicles, key = lambda x: (x.fuel_costs, x.speed))
+
+    def sort_by_speed(self):
+        return sorted(self.free_vehicles, key = lambda x: (x.speed, x.fuel_costs))
