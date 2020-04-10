@@ -4,7 +4,6 @@ standard_data = {
         'speed': 25,
         'power': 0,
         'load_capacity': 5,
-        'capacity_of_people': 0,
         'fuel_costs': 0
     },
     'MotorBikes': {  # Honda CB 250 Hornet
@@ -12,7 +11,6 @@ standard_data = {
         'speed': 80,
         'power': 50,
         'load_capacity': 30,
-        'capacity_of_people': 0,
         'fuel_costs': 5.9
     },
     'Minibus': {  # Bogdan А09202
@@ -20,7 +18,6 @@ standard_data = {
         'speed': 75,
         'power': 121,
         'load_capacity': 3230,
-        'capacity_of_people': 43,
         'fuel_costs': 15.0
     },
     'SportCars': {  # Lamborghini Diablo
@@ -28,7 +25,6 @@ standard_data = {
         'speed': 323,
         'power': 492,
         'load_capacity': 200,
-        'capacity_of_people': 1,
         'fuel_costs': 20.52
     },
     'EstateCars': {  # Mercedes-Benz S-Class S 560
@@ -36,7 +32,6 @@ standard_data = {
         'speed': 250,
         'power': 469,
         'load_capacity': 475,
-        'capacity_of_people': 4,
         'fuel_costs': 9.0
     },
     'MediumTrucks': {  # Mercedes-Benz Sprinter 316 CDI L4H2
@@ -44,7 +39,6 @@ standard_data = {
         'speed': 130,
         'power': 163,
         'load_capacity': 3500,
-        'capacity_of_people': 3,
         'fuel_costs': 7.9
     },
     'HeavyTrucks': {  # MAN TGX 18.440
@@ -52,7 +46,6 @@ standard_data = {
         'speed': 110,
         'power': 400,
         'load_capacity': 18000,
-        'capacity_of_people': 2,
         'fuel_costs': 20.6
     }
 }
