@@ -3,25 +3,6 @@ from vehicles2 import classes_of_cars
 
 
 def statistic(data):
-    stand_objects = [
-        classes_of_cars.PedalBikes(random=False),
-        classes_of_cars.MotorBikes(random=False),
-        classes_of_cars.PickUps(random=False),
-        classes_of_cars.SportCars(random=False),
-        classes_of_cars.EstateCars(random=False),
-        classes_of_cars.MediumTrucks(random=False),
-        classes_of_cars.HeavyTrucks(random=False)
-    ]
-    list_of_founded = {
-        'IN ALL': 0,
-        'PedalBikes': 0,
-        'MotorBikes': 0,
-        'PickUps': 0,
-        'SportCars': 0,
-        'EstateCars': 0,
-        'MediumTrucks': 0,
-        'HeavyTrucks': 0
-    }
     list_of_power = []
     for line in data:
         list_of_power.append(line[2])

@@ -8,7 +8,7 @@ def csv_writer(func):
     Write data to a CSV file path
     """
     def wrapper(path, *args):
-        data = ["Class,wheels,speed,power,load capacity,capacity of people,fuel costs".split(",")]
+        data = ["Class,speed,power,load capacity,fuel costs".split(",")]
         data.extend(func(*args))
         with open(path, "w", newline='') as csv_file:
             writer = csv.writer(csv_file, delimiter=',')
@@ -25,8 +25,8 @@ def get_standard_vehicles():
     """
     data = []
     for key, value in standard_data.items():
-        s = f"{key},{value['wheels']},{value['speed']},{value['power']}," \
-            f"{value['load_capacity']},{value['capacity_of_people']},{value['fuel_costs']}"
+        s = f"{key},{value['speed']},{value['power']}," \
+            f"{value['load_capacity']},{value['fuel_costs']}"
         data.append(s.split(','))
     return data
 

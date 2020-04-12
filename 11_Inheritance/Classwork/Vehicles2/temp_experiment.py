@@ -1,3 +1,4 @@
-money[0] = 1
-money[1] = 2
-print(money)
+lst1 = [1]
+lst2 = lst1.copy()
+lst1.remove(1)
+print(lst1, lst2)

@@ -16,17 +16,23 @@ class Vehicles:
         self.load_capacity = load_capacity
         self.fuel_costs = fuel_costs
         self.price_of_fuel = 25
-        self.busy = False
         self.cargo = []
+        self.busy = self.is_busy()
         self.route = []
         self.cost_of_transportation = self.cost
         self.free_capacity = self.get_free_capacity
+        self.kilometrage = 0
+        self.all_kilometrage = 0
+        self.this_path_segment = self.get_this_path_segment
+        self.place = 'Vinnytsia'
+        self.money = 0
 
     @property
     def description(self):
-        rez = f'\n{self.__class__.__name__}\n{"wheels":.<25}{self.wheels}\n{"speed:":.<25}{self.speed}' \
+        rez = f'\n{self.__class__.__name__}\n{"speed:":.<25}{self.speed}' \
               f'\n{"power:":.<25}{self.power}\n{"load capacity:":.<25}{self.load_capacity}' \
-              f'\n{"capacity of people:":.<25}\n{"fuel costs:":.<25}{self.fuel_costs}'
+              f'\n{"fuel costs:":.<25}{self.fuel_costs}\n{"busy:":.<25}{self.busy}\n{self.route}\n{self.cargo}' \
+              f'\n{"money:":.<25} {self.money}\n{"place:":.<25} {self.place} '
         return rez
 
     @property
@@ -43,10 +49,27 @@ class Vehicles:
         free = self.load_capacity - sum([x.capacity for x in self.cargo])
         return free
 
+    @property
+    def get_this_path_segment(self) -> int:
+        if len(self.route) >= 2:
+            return distance(self.route[0], self.route[1])
+        else:
+            return 0
+
+    def is_busy(self):
+        if not self.cargo:
+            return False
+        else:
+            return True
+
+    def get_new_route(self):
+        if self.cargo:
+            rez = sorted(self.cargo, key=lambda x: -len(x.route))
+            return rez[0].route
+
     def for_csv(self):
         rez = [
             self.__class__.__name__,
-            self.wheels,
             self.speed,
             self.power,
             self.load_capacity,
