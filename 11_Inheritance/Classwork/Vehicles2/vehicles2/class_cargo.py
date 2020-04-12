@@ -1,14 +1,15 @@
 from vehicles2.random_vehicles import matrix_objects
-from vehicles2.routes import distance
+from vehicles2.routes import distance, get_route
 
 
 class Cargo:
     def __init__(self, city_a, city_b, payment, capacity):
         self.a = city_a
         self.b = city_b
+        self.route = get_route(self.a, self.b)
+        self.distance = distance(self.a, self.b)
         self.payment = payment
         self.capacity = capacity
-        self.distance = distance(self.a, self.b)
 
     @property
     def free_vehicles(self):

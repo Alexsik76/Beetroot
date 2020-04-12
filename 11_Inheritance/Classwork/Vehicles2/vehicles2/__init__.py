@@ -6,5 +6,6 @@ __all__: object = ["classes_of_cars",
                    "class_cargo",
                    "random_param",
                    "standard_classes",
-                   "routes"
+                   "routes",
+                   "random_cargo"
                    ]

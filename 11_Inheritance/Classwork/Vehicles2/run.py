@@ -1,6 +1,7 @@
 from vehicles2 import save_csv, class_cargo
 from vehicles2.random_vehicles import matrix_objects
 from vehicles2.routes import distance, get_route
+from vehicles2.random_cargo import get_cargo
 
 # path_st = 'standard_vehicles.csv'
 # path = 'all_vehicles.csv'
@@ -17,6 +18,9 @@ from vehicles2.routes import distance, get_route
 #     print(f'{i.__class__.__name__:.<15}{i.speed:.<10}{i.fuel_costs}')
 r = get_route('Kalynivka', 'Chisinau')
 d = distance('Kalynivka', 'Chisinau')
-print(r, d)
+print('Route = ', r)
+print('Distance = ', d)
 cargo1 = class_cargo.Cargo('Kalynivka', 'Chisinau', 1000, 2000)
 print(cargo1.distance)
+cargo2 = get_cargo()
+print(cargo2.a, cargo2.b, cargo2.distance, cargo2.payment, cargo2.capacity)

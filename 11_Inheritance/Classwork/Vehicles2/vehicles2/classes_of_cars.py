@@ -20,6 +20,7 @@ class Vehicles:
         self.cargo = []
         self.route = []
         self.cost_of_transportation = self.cost
+        self.free_capacity = self.get_free_capacity
 
     @property
     def description(self):
@@ -36,6 +37,11 @@ class Vehicles:
             return sum([x.payment for x in self.cargo]) - ((dist_forward + dist_back) * self.price_of_fuel)
         else:
             return None
+
+    @property
+    def get_free_capacity(self) -> int:
+        free = self.load_capacity - sum([x.capacity for x in self.cargo])
+        return free
 
     def for_csv(self):
         rez = [

@@ -1,4 +1,3 @@
-a = [1]
-b = [3]
-c = a + b
-print(c)
+money[0] = 1
+money[1] = 2
+print(money)
