@@ -1,4 +1,3 @@
-from vehicles2.random_vehicles import matrix_objects
 from vehicles2.routes import distance, get_route
 
 

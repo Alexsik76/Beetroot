@@ -23,6 +23,7 @@ class Vehicles:
         self.free_capacity = self.get_free_capacity
         self.kilometrage = 0
         self.all_kilometrage = 0
+        self.cargo_finished = []
         self.this_path_segment = self.get_this_path_segment
         self.place = 'Vinnytsia'
         self.money = 0
@@ -78,11 +79,6 @@ class Vehicles:
         return rez
 
 
-class Bikes(Vehicles):
-    def __init__(self, wheels, speed, power, load_capacity, fuel_costs):
-        super().__init__(wheels, speed, power, load_capacity, fuel_costs)
-
-
 class Cars(Vehicles):
     def __init__(self, wheels, speed, power, load_capacity, fuel_costs):
         super().__init__(wheels, speed, power, load_capacity, fuel_costs)
@@ -100,30 +96,9 @@ class Trucks(Vehicles):
 
 # last Classes
 
-
-class PedalBikes(Bikes):
-    def __init__(self, wheels, power, speed, load_capacity, fuel_costs):
-        super().__init__(wheels, power, speed, load_capacity, fuel_costs)
-
-
-class MotorBikes(Bikes, Cars):
-    def __init__(self, wheels, power, speed, load_capacity, fuel_costs):
-        super().__init__(wheels, power, speed, load_capacity, fuel_costs)
-
-
 class Minibus(Buses):
     def __init__(self, wheels, power, speed, load_capacity, fuel_costs):
         super().__init__(wheels, power, speed, load_capacity, fuel_costs)
-
-
-class SportCars(Cars):
-    def __init__(self, wheels, power, speed, load_capacity, fuel_costs):
-        super().__init__(wheels, speed, power, load_capacity, fuel_costs)
-
-
-class EstateCars(Cars):
-    def __init__(self, wheels, power, speed, load_capacity, fuel_costs):
-        super().__init__(wheels, speed, power, load_capacity, fuel_costs)
 
 
 class MediumTrucks(Trucks):

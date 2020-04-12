@@ -5,6 +5,7 @@ from vehicles2.class_cargo import Cargo
 
 list_of_cargo = []
 
+
 def dispatcher():
     while len(list_of_cargo) < 100:
         list_of_cargo.append(get_cargo())
@@ -24,6 +25,7 @@ def dispatcher():
             elif (vehicle.free_capacity >= cargo.capacity) and (len(vehicle.route) == 0):
                 if vehicle.place == cargo.route[0]:
                     return vehicle
+
     def to_give_cargo():
         for cargo in list_of_cargo:
             vehicle = find_vehicle(cargo)

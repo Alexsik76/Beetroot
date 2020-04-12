@@ -1,28 +1,46 @@
 from matplotlib import pyplot as plt
-from vehicles2 import classes_of_cars
+from vehicles2.random_vehicles import matrix_objects
 
 
-def statistic(data):
-    list_of_power = []
-    for line in data:
-        list_of_power.append(line[2])
-        for item in stand_objects:
-            if item.comparison(line):
-                list_of_founded['IN ALL'] += 1
-                list_of_founded[item.__class__.__name__] += 1
-                break
-    x = list(list_of_founded.values())[1:]
-    s = list(list_of_founded.keys())[1:]
+def statistic():
+    list_minibus = list(filter(lambda x: x.__class__.__name__ == 'Minibus', matrix_objects))
+    list_medium_trucks = list(filter(lambda x: x.__class__.__name__ == 'MediumTrucks', matrix_objects))
+    list_heavy_trucks = list(filter(lambda x: x.__class__.__name__ == 'HeavyTrucks', matrix_objects))
+    list_capacity = []
+    list_payment = []
+    list_of_names = ['Minibus', 'MediumTrucks', 'HeavyTrucks']
+    sum_capacity = 0
+    sum_payment = 0
+    for vehicle in list_minibus:
+        sum_capacity += sum([x.capacity for x in vehicle.cargo_finished])
+        sum_payment += sum([x.payment for x in vehicle.cargo_finished])
+    list_payment.append(sum_payment)
+    list_capacity.append(sum_capacity)
+    sum_capacity = 0
+    sum_payment = 0
+    for vehicle in list_medium_trucks:
+        sum_capacity += sum([x.capacity for x in vehicle.cargo_finished])
+        sum_payment += sum([x.payment for x in vehicle.cargo_finished])
+    list_payment.append(sum_payment)
+    list_capacity.append(sum_capacity)
+    sum_capacity = 0
+    sum_payment = 0
+    for vehicle in list_heavy_trucks:
+        sum_capacity += sum([x.capacity for x in vehicle.cargo_finished])
+        sum_payment += sum([x.payment for x in vehicle.cargo_finished])
+    list_payment.append(sum_payment)
+    list_capacity.append(sum_capacity)
+    x = list_capacity
+    x2 = list_payment
+    s = list_of_names
     fig, (ax1, ax2) = plt.subplots(
         nrows=1, ncols=2,
         figsize=(8, 4)
     )
 
     ax1.pie(x, labels=s, shadow=True, autopct='%1.1f%%')
-    ax1.set_title('All vehicles2')
-    ax2.scatter(x=range(1000), y=list_of_power, marker='o', c='g', edgecolor='b')
-    ax2.set_title('Scatter: Powers of vehicles2')
-    ax2.set_xlabel('vehicles2')
-    ax2.set_ylabel('power')
+    ax1.set_title('Capacity by vehicles')
+    ax2.pie(x2, labels=s, shadow=True, autopct='%1.1f%%')
+    ax2.set_title('Payment by vehicles')
 
     plt.show()
