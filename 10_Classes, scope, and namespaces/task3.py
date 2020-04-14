@@ -37,7 +37,7 @@ class TVController:
         return self.dict_chanels[self.position]
 
     def is_exist(self, search_arg):
-        if isinstance(search_arg, int) or search_arg.isnumeric():
+        if isinstance(search_arg, int):
             if int(search_arg) in self.dict_chanels.keys():
                 ansver = True
             else:

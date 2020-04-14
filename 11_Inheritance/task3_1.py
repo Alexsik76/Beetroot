@@ -11,14 +11,14 @@ class Product:
 bananas = Product('fruits', 'bananas', 30)
 apples = Product('fruit', 'apples', 10)
 buckwheat = Product('groats', 'buckwheat', 90)
-chicken_wings = Product('meet', 'chicken_wings', 22)
+chicken_wings = Product('meet', 'chicken wings', 22)
 pork_head = Product('meet', 'pork head', 33)
 
 
 def except_decorator(func):
-    def wrapper(*args, **kwargs):
+    def wrapper(self, *args):
         try:
-            func(*args, **kwargs)
+            return func(self, *args)
         except TypeError as alert:
             print(alert)
 
@@ -49,6 +49,11 @@ class ProductStore:
 
     # @except_decorator
     # def sell_product(self, product_name, amount):
+    @except_decorator
+    def search_product(self, product):
+        prod = list(filter(lambda x: x['name'] == product, self.store))
+        return prod
+
 
 silmag = ProductStore()
 
@@ -59,3 +64,5 @@ print(silmag.store)
 
 silmag.set_discount('apples', 75)
 print(silmag.store)
+print('SEARCH')
+print(silmag.search_product('apples'))
