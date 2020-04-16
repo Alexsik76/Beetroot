@@ -13,6 +13,6 @@ class CustomException(Exception):
 
 
 try:
-    raise CustomException('999')
+    raise CustomException(666)
 except CustomException:
     print('Successfully')
