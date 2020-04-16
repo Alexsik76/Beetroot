@@ -1,5 +1,5 @@
 s = 'Hello world!'
-print(f'\x1b[5;36;40m{s:^40}\x1b[0m')
+print(f'\x1b[5;32;40m{s:^40}\x1b[0m')
 
 # The general syntax of this code is:
 # \x1b[A;B;C
