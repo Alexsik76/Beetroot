@@ -16,3 +16,20 @@ try:
     raise CustomException(666)
 except CustomException:
     print('Successfully')
+
+class CustomException2(Exception):
+    pass
+
+
+# Працює:
+try:
+    x = 1 / 0
+except Exception:
+    print('Error')
+
+cust2 = CustomException2()
+# Не працює:
+try:
+    x = 1 / 0
+except cust2:
+    print('Error')
