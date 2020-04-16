@@ -2,13 +2,13 @@ from datetime import datetime
 
 
 class CustomException(Exception):
-
+    pass
     def __init__(self, msg):
         self.msg = msg
         self.log()
 
     def log(self):
-        string = f'''{datetime.now().strftime("%dth of %B '%y, %I:%M%p %Z")} ERROR {self.msg} \n'''
+        string = f'''{datetime.now().strftime("%dth of %B '%y, %I:%M%p %Z")} ERROR {self.args} \n'''
         with open('logs2.txt', "a") as file:
             file.write(string)
 
@@ -16,4 +16,5 @@ class CustomException(Exception):
 try:
     raise CustomException('999')
 except CustomException:
-    print('1')
+    print('Successfully')
+
