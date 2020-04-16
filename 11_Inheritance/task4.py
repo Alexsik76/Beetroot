@@ -2,7 +2,6 @@ from datetime import datetime
 
 
 class CustomException(Exception):
-    pass
     def __init__(self, msg):
         self.msg = msg
         self.log()
@@ -17,4 +16,3 @@ try:
     raise CustomException('999')
 except CustomException:
     print('Successfully')
-
