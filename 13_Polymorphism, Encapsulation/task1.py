@@ -1,4 +1,4 @@
-#Method overloading
+# Method overloading
 class Animal:
     def talk(self):
         pass
@@ -18,9 +18,9 @@ def f(instance):
     print(instance.__class__.__name__, ' say:')
     instance.talk()
 
+
 long = Dog()
 loki = Cat()
-
 
 f(long)
 f(loki)
