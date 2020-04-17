@@ -6,11 +6,11 @@ class Library:
         self.books = []
         self.authors = []
 
-    def new_book(name: str, year: int, author: Author.object):
+    def new_book(self, name: str, year: int, author: Author.object):
         '''Returns an instance of Book class and adds the book to the books list for the current library'''
         pass
 
-    def group_by_author(author: Author.object):
+    def group_by_author(self, author: Author.object):
         '''Returns a list of all books grouped by the specified author'''
         pass
 
