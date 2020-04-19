@@ -31,8 +31,8 @@ class RegistrationPage:
         else:
             name, domain = s.split('@')[0], s.split('@')[1]
             dict_errors2 = {
-                'Name is empty': len(domain) == 0,
-                'Domain is empty': len(domain) == 0,
+                'The prefix is missing': len(name) == 0,
+                'The domain is missing': len(domain) == 0,
                 'Must be followed by one or more letter or number.': is_followed(name, ['_', '.', '-']),
                 'Allowed characters: letters, numbers, dashes': is_followed(domain, ['.', '-']),
                 'The last portion of the domain must be at least two characters': not domain[-2:].isalpha(),
@@ -44,5 +44,5 @@ class RegistrationPage:
         return True
 
 
-y = RegistrationPage('Alex', 'alex@jurist.vn.ua')
+y = RegistrationPage('Alex', '@jurist.vn.ua')
 print(y.email)
