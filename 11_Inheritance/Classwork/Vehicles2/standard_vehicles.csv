@@ -1,0 +1,4 @@
+Class,speed,power,load capacity,fuel costs
+Minibus,75,121,3230,15.0
+MediumTrucks,130,163,3500,7.9
+HeavyTrucks,110,400,18000,20.6

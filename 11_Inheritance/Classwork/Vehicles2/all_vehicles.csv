@@ -1,0 +1,16 @@
+Class,speed,power,load capacity,fuel costs
+MediumTrucks,154,119,3663,7.9
+Minibus,77,112,3299,15.61
+HeavyTrucks,391,103,17320,22.17
+HeavyTrucks,366,110,19503,19.81
+HeavyTrucks,379,104,17183,19.96
+Minibus,78,120,3542,14.89
+MediumTrucks,168,134,3169,7.9
+MediumTrucks,168,138,3295,7.9
+MediumTrucks,168,128,3350,7.9
+MediumTrucks,150,140,3369,7.9
+Minibus,81,129,3519,15.88
+HeavyTrucks,426,104,18464,20.16
+Minibus,71,113,3149,15.37
+MediumTrucks,172,141,3418,7.9
+HeavyTrucks,371,114,17292,22.44
