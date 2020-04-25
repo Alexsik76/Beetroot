@@ -30,30 +30,29 @@ class Shop:
             purpose = 'other'
         if purposes[purpose] <= len(self.flowers):
             min_prices = sorted(self.flowers, key=lambda x: x.price)
-            min_bouquet = list(min_prices[:purposes[purpose] + 1])
+            min_bouquet = list(min_prices[:purposes[purpose]])
             max_bouquet = list(min_prices[len(min_prices):-(purposes[purpose] + 1):-1])
-            if sum([x.price for x in max_bouquet]) <= desirable_price:
-                self.sold_bouquets.append(Bouquet())
-                self.sold_bouquets[-1].composition = max_bouquet.copy()
-                self.money += self.sold_bouquets[-1].price()
-                self.sold_bouquets[-1].was_sold = True
-                return self.sold_bouquets[-1]
-            elif sum([x.price for x in min_bouquet]) <= desirable_price:
-                self.sold_bouquets.append(Bouquet())
-                self.sold_bouquets[-1].composition = min_bouquet.copy()
-                self.money += self.sold_bouquets[-1].price()
-                self.sold_bouquets[-1].was_sold = True
-                return self.sold_bouquets[-1]
+            if sum([x.price for x in max_bouquet]) * 1.3 <= desirable_price:
+                bouquet_level = max_bouquet
+            elif sum([x.price for x in min_bouquet]) * 1.3 <= desirable_price:
+                bouquet_level = min_bouquet
             else:
                 message = 'We do not have a bouquet at your request.'
                 print(f'\033[31m{message}\033[0m')
+                return None
 
-
-kvitka = Shop()
+            bouquet = Bouquet(self)
+            self.sold_bouquets.append(bouquet)
+            print('len: ', len(bouquet_level))
+            for item in range(len(bouquet_level)):
+                bouquet.composition.append(bouquet_level.pop())
+            self.money += bouquet.price()
+            bouquet.was_sold = True
+            return bouquet
 
 
 class Bouquet:
-    def __init__(self, shop: Shop = kvitka):
+    def __init__(self, shop: Shop):
         self.composition = []
         self.shop = shop
         self.price_of_bouquet = 0
@@ -61,24 +60,29 @@ class Bouquet:
 
     def price(self):
         price = sum(list([x.price for x in self.composition]))
-        self.price_of_bouquet = round(price, 2)
+        self.price_of_bouquet = round(price * 1.3, 2)
         return price
 
     def __str__(self):
         string = ', '.join([y.name for y in self.composition])
         return string
 
+
 types_of_flowers = {
     'red rose': 50,
     'white rose': 45,
     'rose pink': 47,
-    'red clove': 35,
-    'white clove': 33
+    'red clove': 20,
+    'white clove': 15
 }
 
+kvitka = Shop()
 for i in types_of_flowers:
     kvitka.purchase_of_flowers(i, 100)
 print('kvitka.money', kvitka.money)
 my_bouquet = kvitka.sale_of_bouquet('other', 400)
 print(my_bouquet, my_bouquet.price_of_bouquet, sep='; ')
+print('kvitka.money', kvitka.money)
+my_bouquet2 = kvitka.sale_of_bouquet('other', 250)
+print(my_bouquet2, my_bouquet2.price_of_bouquet, sep='; ')
 print('kvitka.money', kvitka.money)
