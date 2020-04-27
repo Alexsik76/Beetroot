@@ -64,8 +64,11 @@ class Bouquet:
         return price
 
     def __str__(self):
-        string = ', '.join([y.name for y in self.composition])
-        return string
+        if self.composition:
+            string = ', '.join([y.name for y in self.composition])
+            return string
+        else:
+            return 'No flowers'
 
 
 types_of_flowers = {
@@ -83,6 +86,6 @@ print('kvitka.money', kvitka.money)
 my_bouquet = kvitka.sale_of_bouquet('other', 400)
 print(my_bouquet, my_bouquet.price_of_bouquet, sep='; ')
 print('kvitka.money', kvitka.money)
-my_bouquet2 = kvitka.sale_of_bouquet('other', 250)
+my_bouquet2 = kvitka.sale_of_bouquet('other', 155)
 print(my_bouquet2, my_bouquet2.price_of_bouquet, sep='; ')
 print('kvitka.money', kvitka.money)
