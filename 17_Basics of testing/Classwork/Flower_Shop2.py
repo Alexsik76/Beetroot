@@ -1,4 +1,6 @@
 from __future__ import annotations
+from functools import wraps
+from random import randint
 
 
 class Flower:
@@ -32,33 +34,44 @@ class Shop:
         }
         if purpose not in purposes:
             purpose = 'other'
+        bouquet = purposes[purpose]
+        self.sold_bouquets.append(bouquet)
+        self.money += bouquet.price()
+        for item in bouquet.composition:
+            self.flowers.remove(item)
+        return bouquet
 
-        return purposes[purpose]
+
+def correct_number(f):
+    @wraps(f)
+    def wrapper(self):
+        if self.__class__.__name__ == 'BouquetFuneral':
+            even = True
+        else:
+            even = False
+        rez = f(self)
+        if (even and (len(rez) % 2) == 0) or (not even and (len(rez) % 2) != 0):
+            return rez
+        else:
+            rez.pop()
+            return rez
+
+    return wrapper
 
 
 class Bouquet:
     def __init__(self, shop: Shop, desirable_price: float):
         self.shop = shop
+        self.main_flower = 'white clove'
+        self.min_number = 1
         self.desirable_price = desirable_price
         self.composition = self.create()
         self.price_of_bouquet = self.price()
         self.was_sold = False
-        self.main_flower = types_of_flowers['white clove']
-        self.min_number = 1
 
     def price(self):
         price = sum(list([x.price for x in self.composition]))
-        return round(price * 1.3, 2)
-
-    def correct_number(self, func):
-        def wrapper(*args):
-            rez = func(*args)
-            if len(rez) % self.min_number == 0:
-                return rez
-            else:
-                rez.pop()
-                return rez
-        return wrapper
+        return round(price, 2)
 
     def default_create(self, money):
         composition = []
@@ -75,12 +88,12 @@ class Bouquet:
         if need_flowers:
             min_price = need_flowers[0].price * self.min_number
             if min_price <= self.desirable_price:
-                number = self.desirable_price // min_price
+                number = int(self.desirable_price // min_price)
                 if number <= len(need_flowers):
-                    return need_flowers[:number + 1]
+                    return need_flowers[:number]
                 else:
                     temp_composition = need_flowers
-                    temp_price = self.desirable_price - (sum([list([x.price for x in self.composition])]) * 1.3)
+                    temp_price = self.desirable_price - sum([list([x.price for x in self.composition])])
                     temp_composition.extend(self.default_create(temp_price))
                     return temp_composition
             else:
@@ -90,7 +103,9 @@ class Bouquet:
 
     def __str__(self):
         if self.composition:
-            string = ', '.join([y.name for y in self.composition])
+            string = f"Bouquet for {self.__class__.__name__[7:]}.\n" \
+                     f"Composition: {', '.join([y.name for y in self.composition])}," \
+                     f"\nNumber of flowers: {len(self.composition)},\nPrice: {self.price_of_bouquet}."
             return string
         else:
             return 'No flowers'
@@ -99,26 +114,34 @@ class Bouquet:
 class BouquetMarriage(Bouquet):
     def __init__(self, shop: Shop, desirable_price: float):
         super().__init__(shop, desirable_price)
-        self.main_flower = types_of_flowers['white rose']
+        self.main_flower = 'white rose'
+        self.composition = self.create()
+        self.price_of_bouquet = self.price()
 
 
 class BouquetBirthday(Bouquet):
     def __init__(self, shop: Shop, desirable_price: float):
         super().__init__(shop, desirable_price)
-        self.main_flower = types_of_flowers['red rose']
+        self.main_flower = 'red rose'
+        self.composition = self.create()
+        self.price_of_bouquet = self.price()
 
 
 class BouquetFuneral(Bouquet):
     def __init__(self, shop: Shop, desirable_price: float):
         super().__init__(shop, desirable_price)
-        self.main_flower = types_of_flowers['red clove']
+        self.main_flower = 'red clove'
         self.min_number = 2
+        self.composition = self.create()
+        self.price_of_bouquet = self.price()
 
 
 class BouquetOther(Bouquet):
     def __init__(self, shop: Shop, desirable_price: float):
         super().__init__(shop, desirable_price)
-        self.main_flower = types_of_flowers['rose pink']
+        self.main_flower = 'rose pink'
+        self.composition = self.create()
+        self.price_of_bouquet = self.price()
 
 
 types_of_flowers = {
@@ -132,6 +155,14 @@ types_of_flowers = {
 kvitka = Shop()
 for i in types_of_flowers:
     kvitka.purchase_of_flowers(i, 100)
-my_bouquet = kvitka.sale_of_bouquet('other', 400)
-print(my_bouquet, my_bouquet.price_of_bouquet, sep='; ')
-print()
+
+purp = [
+    'marriage',
+    'birthday',
+    'funeral',
+    'other']
+
+for key in purp:
+    temp_money = randint(50, 500)
+    my_bouquet = kvitka.sale_of_bouquet(key, temp_money)
+    print('money: ', temp_money, '\n', my_bouquet, end='\n\n')
