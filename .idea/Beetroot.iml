@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/11_Inheritance/Classwork/Vehicles" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/11_Inheritance/Classwork/Vehicles2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/21_Practice: creating a calculator using PyQT/Calc" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.8 (2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
