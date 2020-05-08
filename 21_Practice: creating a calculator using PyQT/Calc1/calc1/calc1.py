@@ -18,6 +18,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.b = None
         self.input_str = ''
         self.current_op = ''
+        # self.info = self.lcdNumber.display(self.input_str)
  # Setup numbers.
         for n in range(0, 10):
             getattr(self, 'pushButton_n%s' % n).pressed.connect(lambda v=n: self.input_number(v))
@@ -35,12 +36,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.show()
 
-    def display(self):
-        self.lcdNumber.display(float(self.input_str))
+    # def display(self):
+    #     self.lcdNumber.display(float(self.input_str))
 
     def input_number(self, v):
         self.input_str += str(v)
-        self.display()
+        self.lcdNumber.display(self.input_str)
+        # self.info
+        # self.display()
 
 
 
