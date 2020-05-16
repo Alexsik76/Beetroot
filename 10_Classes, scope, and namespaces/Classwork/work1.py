@@ -20,15 +20,18 @@ class Person:
         Person.list_on_lesson.remove(self.name)
         Person.all_have_money -= self.__have_money
 
+    @staticmethod
     def how_much():
         print(f'Всього на лекції {Person.number_on_lesson}')
 
+    @staticmethod
     def who_on_lesson():
         print('Сьогодні на лекції присутні:')
         for item in Person.list_on_lesson:
             print(f'{item}')
         Person.how_much()
 
+    @staticmethod
     def display_money():
         print(f'У присутніх на лекції всього {Person.all_have_money} грошей')
 
