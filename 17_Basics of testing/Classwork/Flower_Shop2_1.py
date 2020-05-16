@@ -35,9 +35,10 @@ class Shop:
         bouquet = purposes.get(purpose, 'other')
         self.sold_bouquets.append(bouquet)
         self.money += bouquet.price()
-        a = set(self.flowers)
-        a.difference_update(set(bouquet.composition))
-        self.flowers = list(a)
+        self.flowers = list(filter((lambda x: x not in bouquet.composition), self.flowers))
+        # a = set(self.flowers)
+        # a.difference_update(set(bouquet.composition))
+        # self.flowers = list(a)
         return bouquet
 
 
