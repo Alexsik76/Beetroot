@@ -2,7 +2,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 # import operator
-from calc1design import  Ui_MainWindow
+from calc1design import Ui_MainWindow
 
 def op_or_equal():
     pass
