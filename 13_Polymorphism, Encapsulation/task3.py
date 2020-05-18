@@ -7,8 +7,6 @@ class Fraction:
         assert denominator != 0, 'denominator mast bee not 0'
         self.denominator = denominator
 
-
-
     def __add__(self, other):
         assert isinstance(other, Fraction), 'The second term of the expression must be an Fraction.object'
         rez_numerator = self.numerator * other.denominator + self.denominator * other.numerator
@@ -58,9 +56,9 @@ def reducing(obj: Fraction):
     return obj
 
 
-x = Fraction(125, 15)
-y = Fraction(5, 25)
-z = x - y
+x = Fraction(1, 2)
+y = Fraction(1, 4)
+z = x + y
 print(z)
 x1 = Fraction(-25, 5)
 y1 = Fraction(-1, 32)
