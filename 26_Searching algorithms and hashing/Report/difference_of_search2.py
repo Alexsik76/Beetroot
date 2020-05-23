@@ -43,10 +43,10 @@ def binary_search(array, item):
 
 
 def my_arr(number):
-    arr = [3]
+    new_arr = [3]
     for i in range(number):
-        arr.append(arr[i] + randint(1, 5))
-    return arr
+        new_arr.append(new_arr[i] + randint(1, 5))
+    return new_arr
 
 
 if __name__ == "__main__":
@@ -76,18 +76,3 @@ if __name__ == "__main__":
         setup="from __main__ import binary_search"
     )
     print(bin_timer)
-
-    #
-    # def my_time(func):
-    #     start = time()
-    #     func(arr, item)
-    #     stop = time()
-    #     print((stop - start) * 1000_000)
-    #
-    #
-    # print('My_time')
-    # print('=' * 80)
-    # my_time(sequential_search)
-    # my_time(sequential_search_2)
-    # my_time(simple_search)
-    # my_time(binary_search)
