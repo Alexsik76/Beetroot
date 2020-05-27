@@ -83,3 +83,4 @@ if __name__ == "__main__":
     my_time(sequential_search_2)
     my_time(simple_search)
     my_time(binary_search)
+
