@@ -2,7 +2,18 @@ from collections import deque
 
 
 # finds shortest path between 2 nodes of a graph using BFS
-def bfs_shortest_path(graph, start, goal):
+def bfs_shortest_path(graph: dict, start: str, goal: str) -> list:
+    """Search shortest path in graph by the BFS algorithm
+
+    Args:
+        graph (dict): [description]
+        start (str): [description]
+        goal (str): [description]
+
+    Returns:
+        list: [description]
+    """
+
     # keep track of explored nodes
     explored = set()
     # keep track of all the paths to be checked
