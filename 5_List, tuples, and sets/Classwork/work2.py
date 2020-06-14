@@ -8,7 +8,7 @@ while i < 10:
     list1.append(a)
     list2.append(b)
     i += 1
-print(enumerate(list1))
+print(*enumerate(list1))
 for j, v in enumerate(list1):
     print(j, v)
 j = 0

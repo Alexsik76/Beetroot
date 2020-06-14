@@ -11,6 +11,7 @@ def make_operation(op, *num):
         func = lambda a, res: res * a
     else:
         print('unknown operator')
+        return None
     for item in num[1:]:
         res = func(item, res)
     return res

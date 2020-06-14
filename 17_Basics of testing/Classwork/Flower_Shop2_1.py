@@ -32,13 +32,13 @@ class Shop:
             'funeral': BouquetFuneral(self, desirable_price),
             'other': BouquetOther(self, desirable_price)
         }
-        if purpose not in purposes:
-            purpose = 'other'
-        bouquet = purposes[purpose]
+        bouquet = purposes.get(purpose, 'other')
         self.sold_bouquets.append(bouquet)
         self.money += bouquet.price()
-        for item in bouquet.composition:
-            self.flowers.remove(item)
+        self.flowers = list(filter((lambda x: x not in bouquet.composition), self.flowers))
+        # a = set(self.flowers)
+        # a.difference_update(set(bouquet.composition))
+        # self.flowers = list(a)
         return bouquet
 
 
