@@ -10,14 +10,14 @@ api_key = '5dc158e8a8dde73cdcfe9ac5c03d6a23'
 
 
 def get_user_input() -> str:
-    city = input('Input location, or type "q" for exit: ')
+    city = input('Input location, or type "q" to exit: ')
     if city in key_to_exit:
         sys.exit()
     return city
 
 
-def get_synonyms(city: str):
-    """Get synonyms of user input city,
+def get_synonyms(city: str) -> set:
+    """Get synonyms of user's input city,
     if not found, repeat input
 
     Args:
@@ -25,7 +25,7 @@ def get_synonyms(city: str):
 
     Returns:
         location(str): detail of city;
-        needed_synonyms(set): set of synonyms by [lengs]
+        needed_synonyms(set): set of synonyms by [langs]
     """
     while True:
         try:
@@ -36,13 +36,13 @@ def get_synonyms(city: str):
                 if key[-2:] in langs
             }
         except AttributeError:
-            print(f'With the help of GeoPy, was not found the city {city}')
+            print(f'GeoPy did not find the city {city}.')
             city = get_user_input()
             continue
         return location, needed_synonyms
 
 
-def get_weather(api_key: str, location: str):
+def get_weather(api_key: str, location: str) -> dict:
     param_of_request = f'q={location}&units=metric&appid={api_key}'
     r = requests.get(f'{url}{param_of_request}')
     return r.json()
@@ -54,16 +54,17 @@ def main():
         location, synonyms = get_synonyms(user_sity)
         weather = get_weather(api_key, location)
         if weather['cod'] == 200:
-            print(f'With the help of GeoPy, was found the city: {location},')
+            print(f'GeoPy found the city: {location},')
             print('also known as: ', *synonyms, sep='\n')
-            print('Now in this city the following weather:')
+            print('The weather in this city is:')
             print(' temp: ', weather['main']['temp'],
                   '\n', 'humidity: ', weather['main']['humidity'],
-                  '\n', 'pressure: ', weather['main']['pressure'])
+                  '\n', 'pressure: ', weather['main']['pressure'],
+                  '\n right now.')
             break
         else:
             print(weather['message'], end='.\n')
-            print(f'Bat found: {location}')
+            print(f'But found: {location}')
             continue
 
 
