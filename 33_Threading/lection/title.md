@@ -101,4 +101,4 @@ I am Worker t1, my number is 999
 
 Це можна продемонструвати діаграмою:
 
-![diagram](img/diagram2.png)
+![diagram](img/diagram3.png)
