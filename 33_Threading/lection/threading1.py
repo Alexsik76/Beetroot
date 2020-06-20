@@ -8,7 +8,7 @@ def worker(number):
     for i in range(1000):
         number = i
         time.sleep(0.001)
-    print(f"I am Worker {thread_name}, my number is {number}\n")
+    print(f"I am Worker {thread_name}, my number is {number}")
 
 
 number = 0
@@ -19,4 +19,5 @@ t1.start()
 t2.start()
 # t1.join()
 # t2.join()
-print('Main thread is finished', '\n')
+print('Main thread is finished')
+print('number = ', number)
