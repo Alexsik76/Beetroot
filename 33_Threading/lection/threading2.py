@@ -7,7 +7,7 @@ def counter(number):
     print(x)
 
 
-def threds_task(number):
+def threads_task(number):
     number = int(number / 2)
     t1 = threading.Thread(target=counter, args=(number,))
     t2 = threading.Thread(target=counter, args=(number,))
@@ -26,5 +26,5 @@ def single_task(number):
 
 
 number = 10_000_000
-# threds_task(number)
+# threads_task(number)
 single_task(number)
