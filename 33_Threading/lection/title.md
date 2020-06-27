@@ -209,4 +209,5 @@ single_task(number)
     Thread: Thread-2 value: 5
     ```
 
+Більше прикладів використання ```local``` можна знайти на [stackoverflow](https://stackoverflow.com/questions/1408171/thread-local-storage-in-python).
 У той же час GIL не керує операціями вводу і виведення. Тому саме
