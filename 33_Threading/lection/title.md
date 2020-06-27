@@ -210,4 +210,5 @@ single_task(number)
     ```
 
 Більше прикладів використання ```local``` можна знайти на [stackoverflow](https://stackoverflow.com/questions/1408171/thread-local-storage-in-python).
+
 У той же час GIL не керує операціями вводу і виведення. Тому саме
