@@ -268,3 +268,7 @@ if __name__ == '__main__':
 16
 25
 ```
+
+В якості додатковий матеріалів можна переглянути відео з каналу [ITVDN](https://www.youtube.com/watch?v=Ad5fHlFHbOg), а також практичні приклади застосування асинхронного програмування в мережах на каналі [Олега Молчанова](https://www.youtube.com/watch?v=ZGfv_yRLBiY&t=148shttps://www.youtube.com/watch?v=ZGfv_yRLBiY&t=148s).
+
+Яскраві приклади багатопоточності у короткій статті на [Хабр](https://m.habr.com/ru/company/skillfactory/blog/507264/comments/)
