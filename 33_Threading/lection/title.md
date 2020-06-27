@@ -269,6 +269,7 @@ if __name__ == '__main__':
 25
 ```
 
+Детальніше про модуль concurrent.futures можна знайти на цьому [сайті](https://pyneng.readthedocs.io/ru/latest/book/20_concurrent_connections/concurrent_futures_submit.html).
 В якості додатковий матеріалів можна переглянути відео з каналу [ITVDN](https://www.youtube.com/watch?v=Ad5fHlFHbOg), а також практичні приклади застосування асинхронного програмування в мережах на каналі [Олега Молчанова](https://www.youtube.com/watch?v=ZGfv_yRLBiY&t=148shttps://www.youtube.com/watch?v=ZGfv_yRLBiY&t=148s).
 
 Яскраві приклади багатопоточності у короткій статті на [Хабр](https://m.habr.com/ru/company/skillfactory/blog/507264/comments/)
