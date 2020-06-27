@@ -215,3 +215,47 @@ single_task(number)
 
 Як бачите, використання базового модуля ```threading``` доволі нерпоста задача. Тому існують більш високорівневі бібліотеки, які дозволяють робити те ж саме без зайвого клопоту.
 
+Як приклад: ```ThreadPoolExecutor``` з модуля ```concurrent.futures```.
+
+```python
+from concurrent.futures import ThreadPoolExecutor
+from time import sleep
+def task(message):
+   sleep(2)
+   return message
+
+def main():
+   executor = ThreadPoolExecutor(5)
+   future = executor.submit(task, ("Completed"))
+   print(future.done())
+   sleep(2)
+   print(future.done())
+   print(future.result())
+if __name__ == '__main__':
+main()
+```
+
+У наведеному вище прикладі ThreadPoolExecutor був побудований з 5 потоків.
+
+Ще один спосіб створити екземпляр ThreadPoolExecutor - за допомогою контекстного менеджера. Це працює аналогічно методу, який використовується у наведеному вище прикладі. Основна перевага використання контекстного менеджера полягає в тому, що він виглядає синтаксично добре. Екземпляр можна зробити за допомогою наступного коду -
+
+```python
+with ThreadPoolExecutor(max_workers = 5) as executor
+```
+
+Частіше використовується метод map(), який отримує функцію та список аргументів, та повертає список результатів роботи функції у різних потоках:
+
+```python
+from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import as_completed
+values = [2,3,4,5]
+def square(n):
+   return n * n
+def main():
+   with ThreadPoolExecutor(max_workers = 3) as executor:
+      results = executor.map(square, values)
+for result in results:
+      print(result)
+if __name__ == '__main__':
+   main()
+```
