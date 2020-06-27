@@ -259,6 +259,7 @@ for result in results:
 if __name__ == '__main__':
    main()
 ```
+
 результатом буде:
 
 ```python
