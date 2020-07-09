@@ -1,7 +1,7 @@
 {
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
-    "python.pythonPath": "C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "python.pythonPath": "Final_Project\\env\\Scripts\\python.exe",
     "python.linting.mypyEnabled": false,
     "python.linting.pycodestyleEnabled": true,
     "python.linting.banditEnabled": false,
@@ -10,5 +10,6 @@
     "cSpell.ignoreWords": [
         "yurishirox",
         "zeewitje"
-    ]
+    ],
+    "git.ignoreLimitWarning": true
 }
