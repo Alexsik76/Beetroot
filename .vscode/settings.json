@@ -11,5 +11,6 @@
         "yurishirox",
         "zeewitje"
     ],
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "python.languageServer": "Microsoft"
 }
