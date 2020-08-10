@@ -37,9 +37,14 @@ top.title("Chatter")
 messages_frame = tkinter.Frame(top)
 my_msg = tkinter.StringVar()  # For the messages to be sent.
 my_msg.set("Type your messages here.")
-scrollbar = tkinter.Scrollbar(messages_frame)  # To navigate through past messages.
+# To navigate through past messages.
+scrollbar = tkinter.Scrollbar(messages_frame)
 # Following will contain the messages.
-msg_list = tkinter.Listbox(messages_frame, height=15, width=50, yscrollcommand=scrollbar.set)
+msg_list = tkinter.Listbox(
+                        messages_frame,
+                        height=15,
+                        width=50,
+                        yscrollcommand=scrollbar.set)
 scrollbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
 msg_list.pack(side=tkinter.LEFT, fill=tkinter.BOTH)
 msg_list.pack()
