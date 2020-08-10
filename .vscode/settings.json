@@ -12,5 +12,5 @@
         "zeewitje"
     ],
     "git.ignoreLimitWarning": true,
-    "python.languageServer": "Microsoft"
+    "python.languageServer": "Pylance"
 }
